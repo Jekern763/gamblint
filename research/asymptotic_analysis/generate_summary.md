@@ -30,4 +30,4 @@
 
 **Status:** Both regimes now have concrete, verified data; neither has a unifying derivation yet.
 
-**Big question:** can one generating function or one piece of asymptotic machinery produce both limits as special cases — i.e., a genuine two-variable asymptotic analysis of $T(n,k)$ as $n,k\to\infty$ jointly (fixing a ratio, or one then the other) that recovers the Vandermonde/Franel-style behavior in one direction and the $n^{n-2}k^{n-1}$-type polynomial behavior in the other? That's exactly the kind of result that would let "vector analysis" and "asymptotic analysis" become one section instead of two.
+**Big question:** can one generating function or one piece of asymptotic machinery produce both limits as special cases — i.e., a genuine two-variable asymptotic analysis of $T(n,k)$ as $n,k\to\infty$ jointly (fixing a ratio, or one then the other) that recovers the Vandermonde/Franel-style behavior in one direction and the $n^{n-2}k^{n-1}$-type polynomial behavior in the other?
