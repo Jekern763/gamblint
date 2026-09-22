@@ -1,72 +1,73 @@
 # Conjectures
 
-## Polynomial structure of $A_t(n)$ for fixed $t$ and variable $n$
+Polynomial structure of $A_t(n)$
 
-Given
-
-$$
-A_t(n)
-$$
-where $t$ is known, the conjecture is that
+For fixed $t$, conjecture that
 
 $$
-\deg{A_t(n)} = t
+\deg A_t(n)=t
 $$
+Polynomial formulas
 
-## Polynomial fits for $A_t(n)$
+For each $t$, polynomial fits to the computed values appear to give the exact polynomial $A_t(n)$, but this is currently unproven. These formulas motivate the following structural conjectures.
 
-For any set t, I have fit some polynomials to the function, where the fit is complete, but unproven. This becomes the basis for further conjectures and proofs.
+Appell structure
 
-## Appell Sequence Structure of $A_t(n)$
-
-If the proposed polynomial functions for $A_t(n)$ are correct then
-
-$$
-g_t(n) = \frac{A_t(n)}{2^tt!} \\[1em]
-g'_t(n) = g_{t-1}(n)
-$$
-
-Which is an appelle sequence, which would suggest
+Define
 
 $$
-A_t(n) = \sum_{r=0}^t 2^{t-r} \binom{t}{r}A_r(0)n^{t-r}
+g_t(n)=\frac{A_t(n)}{2^t t!}
 $$
 
-Where $A_r(0)$ is the only unkwone quantity, and as such is the only degree of freedoms
-
-Because we would have proven the appell property it also holds that
+If the polynomial formulas are correct, conjecture
 
 $$
-g_{t+1}(n) = \int{g_t(n)}
+g_t'(n)=g_{t-1}(n)
 $$
 
-But because it is an indefinite integral, there is still a degree of freedom on the constant term $C$.
+so $\{g_t\}$ forms an Appell sequence.
 
-That can be eliminated with one test point, and we can use another, proven identity for that one
-
-$$
-A_{t}(t) = A_{t+1}(t) \\
-$$
-
-So using a previous case as the lead to our new test point
-
-So when we have something like
+Therefore
 
 $$
-A_t(n) = f(n) + C
+\boxed{ A_t(n)= \sum_{r=0}^t 2^{t-r}\binom tr A_r(0)n^{t-r} }
 $$
 
-to find $C$ we would need one test case, but because of the identity above, and that fact taht we must know the lower values before finding this higher one, we can substitue
+so the sequence is determined by the values $A_r(0)$.
+
+Equivalently, once $A_t$ is known, $A_{t+1}$ is determined up to one additive constant.
+
+Boundary identity
+
+Use the proven identity
 
 $$
-A_{t-1}(t) = f(n) + C \\
-C = A_{t-1}(t) - f(n)
+\boxed{A_{t-1}(t)=A_t(t)}
 $$
 
-which will solve for every value of $C$ as long as the functions are build recursively
+to determine that constant recursively.
 
-Then just evaluating at $t=n$ gives the full sequence
+If
 
 $$
-A_n(n) = A(n)
+A_t(n)=f(n)+C,
+$$
+
+then
+
+$$
+A_t(t)=A_{t-1}(t)
+$$
+
+so
+
+$$
+\boxed{C=A_{t-1}(t)-f(t)}.
+$$
+
+Thus, if the Appell structure and boundary identity hold, each new polynomial can be determined recursively from the preceding one, without needing an independent value for its constant term.
+
+Finally, the original sequence is the diagonal:
+$$
+A(n)=A_n(n)
 $$
