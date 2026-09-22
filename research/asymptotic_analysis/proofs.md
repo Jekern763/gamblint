@@ -229,7 +229,6 @@ Therefore, $f$ is a bijection, and hence
 
 $$
 A_{t-1}(t)=A_t(t) \\
-\Box
 $$
 
 ### $A_t(n) \le \min{((2n-1)^t, (n!)^2)}$
