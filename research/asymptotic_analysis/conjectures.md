@@ -27,6 +27,12 @@ $$
 
 so $\{g_t\}$ forms an Appell sequence.
 
+To see it in terms of $A_t(n)$ I would conjecture
+
+$$
+A_{t-1}(n) = 2tA'_t(n)
+$$
+
 Therefore
 
 $$
@@ -70,4 +76,19 @@ Thus, if the Appell structure and boundary identity hold, each new polynomial ca
 Finally, the original sequence is the diagonal:
 $$
 A(n)=A_n(n)
+$$
+
+One more nice identity
+
+Given
+
+$$
+A_{t-1}(t)=A_t(t) \\
+A_{t-1}(n) = 2tA'_t(n)
+$$
+
+We can do
+
+$$
+A_t(t) = 2tA'_t(t)
 $$
