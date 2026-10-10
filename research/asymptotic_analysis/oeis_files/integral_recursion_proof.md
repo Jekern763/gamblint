@@ -115,4 +115,4 @@ $$
 T(n,0)=1,
 $$
 
-the formula recursively generates the entire tr
+the formula recursively generates the entire tree
