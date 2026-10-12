@@ -82,7 +82,7 @@ $$
 &=\frac1t[x^{t-1}]\Psi'(x)e^{2tx}\\
 &= \frac1t[x^{t-1}](Q'(x)-2tQ(x))\\
 &=\frac1t[x^{t-1}]Q'(x)-2[x^{t-1}]Q(x)\\
-&=[x^t]Q(x)-2[x^{t-1}]q(x)\\
+&=[x^t]Q(x)-2[x^{t-1}]Q(x)\\
 &=[x^t](1-2x)Q(x)\\
 &=[x^t](1-2x)\Psi(x)e^{2tx}.
 \end{aligned}

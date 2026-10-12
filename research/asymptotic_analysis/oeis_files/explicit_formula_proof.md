@@ -220,9 +220,11 @@ $$
 We can divide by $X$ because the power series for $X(w)$ begins with $w$, and so its product with another non-zero power series cannot be the zero power series
 
 $$
-\Psi'(X)-(1-2X)(\Psi(x))=0\\
+\Psi'(X)-(1-2X)(\Psi(X))=0\\
 \boxed{\Psi'(x)=(1-2x)\Psi(x),\qquad \Psi(0)=1.}\tag{7}
 $$
+
+Since $X(w)=w+O(w^2)$, substitution of $X(w)$ for $x$ is injective on formal power series, so this identity implies (7)
 
 **Solve the equation.** Using the known form $y'=cy$, it is therefore the unique solution:
 
@@ -355,19 +357,3 @@ $$
 \sum_{t\geq0}\left[H_t\!\left(t+\frac12\right)-2tH_{t-1}\!\left(t+\frac12\right)\right]\frac{w^t}{t!}
 =\exp\!\left(-\frac12W(-2w)-\frac14W(-2w)^2\right).
 $$
-
-There is also a combinatorial interpretation. The series $X$ is the exponential generating function for rooted labeled trees with each edge weighted $2$. The exponential generating function for unrooted trees with this edge weight is $X-X^2$: a tree with $t$ vertices has $t$ choices of a marked vertex and $t-1$ choices of a marked edge, so subtracting the edge-rooted count from the vertex-rooted count leaves one copy of each tree. A forest is a set of trees, giving
-
-$$
-D(w)=e^{X(w)-X(w)^2}\quad\Longrightarrow\quad A_t(t)=\sum_{F\text{ a forest on }[t]}2^{|E(F)|}.
-$$
-
-For instance, on three vertices there is one empty forest, three one-edge forests, and three two-edge trees, so $d_3=1+3\cdot2+3\cdot4=19$. On four vertices, the corresponding count is $1+6\cdot2+15\cdot4+16\cdot8=201$.
-
-The standard forest expansion of the Ehrhart polynomial of the permutohedron $P_t$ is
-
-$$
-\operatorname{Ehr}_{P_t}(s)=\sum_{F\text{ a forest on }[t]}s^{|E(F)|}.
-$$
-
-Setting $s=2$ shows that the same sum counts the lattice points of $2P_t$. This final identification uses the known forest expansion for the permutohedron; it is a combinatorial connection to the result proved here, rather than a step needed to derive the generating functions.
