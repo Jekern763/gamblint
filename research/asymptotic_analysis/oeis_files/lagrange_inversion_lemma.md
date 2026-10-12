@@ -1,6 +1,6 @@
 # A Specialized Lagrange Inversion Identity for $X(w)=we^{2X(w)}$
 
-This note proves the coefficient-transfer identity used in `explicit_formula_proof_revised.md`, applying the standard Lagrange–Bürmann formula to $X(w)=we^{2X(w)}$.
+This note proves the coefficient-transfer identity used in `explicit_formula_proof.md`, applying the standard Lagrange–Bürmann formula to $X(w)=we^{2X(w)}$.
 
 ## Conventions
 
@@ -74,7 +74,7 @@ $$
 Q'(x)=\Psi'(x)e^{2tx}+2t\Psi(x)e^{2tx},
 $$
 
-so $\Psi'(x)e^{2tx}=Q'(x)-2tF(x)$. By (LI),
+so $\Psi'(x)e^{2tx}=Q'(x)-2tQ(x)$. By (LI),
 
 $$
 \begin{aligned}

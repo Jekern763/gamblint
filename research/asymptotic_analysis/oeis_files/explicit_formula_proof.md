@@ -108,7 +108,7 @@ $$
 X(w)=we^{2X(w)},\qquad X(0)=0.
 $$
 
-By Lemma (L), proved in `lagrange_inversion_lemma_revised.md`,
+By Lemma (L), proved in `lagrange_inversion_lemma.md`,
 
 $$
 \boxed{[w^t]\Psi(X(w))=[x^t](1-2x)\Psi(x)e^{2tx}.}\tag{L}
@@ -211,36 +211,20 @@ $$
 Multiply by $1-2X$ and use (6):
 
 $$
-X\Psi'(X)=(1-2X)X\Psi(X).
+(1-2x)wX'\Psi'(X) = (1-2x)X\Psi(X)\\
+X\Psi'(X)=(1-2X)X\Psi(X)\\
+X\Psi-X(1-2X)\Psi(X)'(X)=0\\
+X(\Psi'(X)-(1-2X)\Psi(X)) = 0
 $$
 
-Hence, with
+We can divide by $X$ because the power series for $X(w)$ begins with $w$, and so its product with another non-zero power series cannot be the zero power series
 
 $$
-R(x):=x\bigl(\Psi'(x)-(1-2x)\Psi(x)\bigr),
-$$
-
-we have $R(X(w))=0$.
-
-**Why this implies $R(x)=0$.** If $R$ were nonzero, let $r_mx^m$ be its lowest-degree nonzero term, with $r_m\neq0$. Since $X(w)=w+\text{higher-degree terms}$, the lowest-degree term of $R(X(w))$ would be $r_mw^m$, so $R(X(w))$ could not be zero. This contradiction shows that $R=0$. Multiplication by $x$ only shifts a series' coefficients, so we can cancel the factor $x$ to obtain
-
-$$
+\Psi'(X)-(1-2X)(\Psi(x))=0\\
 \boxed{\Psi'(x)=(1-2x)\Psi(x),\qquad \Psi(0)=1.}\tag{7}
 $$
 
-**Solve the equation.** Write $\Psi(x)=\sum_{k\geq0}\psi_kx^k$, with $\psi_{-1}=0$. Comparing coefficients in (7) gives
-
-$$
-(k+1)\psi_{k+1}=\psi_k-2\psi_{k-1}.
-$$
-
-Since $\psi_0=1$, this recurrence determines all coefficients uniquely. The series $e^{x-x^2}$ has constant term $1$ and
-
-$$
-\frac{d}{dx}e^{x-x^2}=(1-2x)e^{x-x^2}.
-$$
-
-It is therefore the unique solution:
+**Solve the equation.** Using the known form $y'=cy$, it is therefore the unique solution:
 
 $$
 \boxed{\Psi(x)=e^{x-x^2}.}\tag{8}
@@ -248,6 +232,13 @@ $$
 
 Substituting (8) into (1) proves the generating-function formula:
 
+$$
+\begin{aligned}
+G(n,x)&=(1-2x)\Psi(x)e^{2nx}\\
+G(n,x) &= (1-2x)e^{x-x^2}e^{2nx}
+\end{aligned}
+$$
+So
 $$
 \boxed{G(n,x)=(1-2x)e^{(2n+1)x-x^2}.}
 $$
@@ -317,8 +308,10 @@ $$
 Thus the diagonal's exponential generating function is
 
 $$
-\boxed{D(w)=\exp\!\left(-\frac12W(-2w)-\frac14W(-2w)^2\right).}
+\boxed{D(w)=\exp\left(-\frac12W(-2w)-\frac14W(-2w)^2\right).}
 $$
+
+This is equivalent to the e.g.f found in [OEIS entry A362968](https://oeis.org/A362968) which is the number of integral points in 2 times the permutohedron of order n.
 
 ## 7. Summary of Findings
 
@@ -347,13 +340,13 @@ $$
 **Diagonal in terms of Hermite polynomials:**
 
 $$
-d_t=H_t\!\left(t+\frac12\right)-2tH_{t-1}\!\left(t+\frac12\right).
+A_t(t)=H_t\!\left(t+\frac12\right)-2tH_{t-1}\!\left(t+\frac12\right).
 $$
 
 **Diagonal exponential generating function in terms of Lambert $W$:**
 
 $$
-D(w)=\sum_{t\geq0}d_t\frac{w^t}{t!}=\exp\!\left(-\frac12W(-2w)-\frac14W(-2w)^2\right).
+D(w)=\sum_{t\geq0}A_t(t)\frac{w^t}{t!}=\exp\!\left(-\frac12W(-2w)-\frac14W(-2w)^2\right).
 $$
 
 Together, these give an identity connecting Hermite polynomials evaluated along the diagonal with Lambert $W$:
@@ -363,16 +356,10 @@ $$
 =\exp\!\left(-\frac12W(-2w)-\frac14W(-2w)^2\right).
 $$
 
-The diagonal begins
-
-$$
-d_0,d_1,d_2,d_3,d_4=1,1,3,19,201.
-$$
-
 There is also a combinatorial interpretation. The series $X$ is the exponential generating function for rooted labeled trees with each edge weighted $2$. The exponential generating function for unrooted trees with this edge weight is $X-X^2$: a tree with $t$ vertices has $t$ choices of a marked vertex and $t-1$ choices of a marked edge, so subtracting the edge-rooted count from the vertex-rooted count leaves one copy of each tree. A forest is a set of trees, giving
 
 $$
-D(w)=e^{X(w)-X(w)^2}\quad\Longrightarrow\quad d_t=\sum_{F\text{ a forest on }[t]}2^{|E(F)|}.
+D(w)=e^{X(w)-X(w)^2}\quad\Longrightarrow\quad A_t(t)=\sum_{F\text{ a forest on }[t]}2^{|E(F)|}.
 $$
 
 For instance, on three vertices there is one empty forest, three one-edge forests, and three two-edge trees, so $d_3=1+3\cdot2+3\cdot4=19$. On four vertices, the corresponding count is $1+6\cdot2+15\cdot4+16\cdot8=201$.
