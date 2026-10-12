@@ -12,164 +12,241 @@ $$
 A_0(n)=1,\qquad A_t(t)=A_{t-1}(t).\tag{B}
 $$
 
-As proved in `integral_recursion_proof.md`, it follows that
+As proved in `integral_recursion_proof.md`,
+
 $$
 A_t(n)=A_{t-1}(t)+\int_t^n 2tA_{t-1}(u)\,du,\qquad t\geq1.
 $$
 
-In particular each $A_t$ is a polynomial in $n$, by induction on $t$.
+In particular, each $A_t$ is a polynomial in $n$.
 
 ## Conventions
 
-Throughout, generating functions are formal power series, and $[x^t]F(x)$ denotes the coefficient of $x^t$ in $F$. Let $H_t(y)$ be the physicists' Hermite polynomial of degree $t$, with $H_{-1}(y)=0$. We use the following standard facts about formal power series without further comment.
+All generating functions are formal power series over $\mathbb R$, and $[x^t]F(x)$ denotes the coefficient of $x^t$ in $F(x)$. Differentiation is coefficientwise; we use the standard product, chain, and exponential rules. Composition $F(X(w))$ is valid when $X(0)=0$. A series with nonzero constant term has a multiplicative inverse; in particular, $1-2x$ is invertible. A series with zero derivative is constant, coefficient by coefficient. Let $H_t(y)$ be the physicists' Hermite polynomial of degree $t$, with $H_{-1}(y)=0$.
 
-- A series with nonzero constant term is invertible. In particular $\frac1{1-2x}=1+2x+4x^2+\cdots$, and $1-2X(w)$ is invertible whenever $X(0)=0$.
-- If $X(0)=0$, then $F(X(w))$ is defined, and the product rule and the chain rule $\bigl(F(X)\bigr)'=F'(X)X'$ hold. If $F(0)=0$, then $e^{F}$ is defined and $(e^F)'=F'e^F$.
-- A series whose derivative is $0$ is constant. If $x\cdot S=0$ then $S=0$, since $[x^{k+1}](xS)=[x^k]S$.
-- A series in $x$ whose coefficients are polynomials in $n$ can be differentiated in $n$ coefficient by coefficient.
-
-The one outside theorem we use, Lagrange inversion, is isolated in `lagrange_inversion_lemma.md`. From that file we use the series $X(w)$ (the unique series with $X(0)=0$ and $X=we^{2X}$, so $X=w+2w^2+6w^3+\cdots$) and Lemma (L).
+The tags (D) and (B) refer to the differential recursion and boundary condition in the Definition. The numbered tags (1)–(8) label equations used later in this proof, and (BC) labels the coefficient identity obtained from the boundary condition. The tag (L) refers to the coefficient-transfer lemma proved in the companion note `lagrange_inversion_lemma.md`. That note derives (L) from the standard Lagrange–Bürmann formula, for which it gives a reference.
 
 ## Main Theorem
 
 The exponential generating function of the polynomial sequence is
 
 $$
-\boxed{
-G(n,x)=\sum_{t\geq0}A_t(n)\frac{x^t}{t!}
-=(1-2x)e^{(2n+1)x-x^2}.
-}
+\boxed{G(n,x)=\sum_{t\geq0}A_t(n)\frac{x^t}{t!}=(1-2x)e^{(2n+1)x-x^2}.}
 $$
 
 Consequently,
 
 $$
-\boxed{
-A_t(n)=H_t\!\left(n+\tfrac12\right)-2tH_{t-1}\!\left(n+\tfrac12\right).
-}
+\boxed{A_t(n)=H_t\!\left(n+\frac12\right)-2tH_{t-1}\!\left(n+\frac12\right).}
 $$
 
-Furthermore, let $d_t=A_t(t)$ be the diagonal. Its exponential generating function is
+Where $H_t$ is the physicists Hermite polynomial
+
+For the diagonal $d_t=A_t(t)$, its exponential generating function is
 
 $$
-\boxed{
-D(w)=\sum_{t\geq0}d_t\frac{w^t}{t!}
-=\exp\!\left(-\tfrac12W(-2w)-\tfrac14W(-2w)^2\right),
-}
+\boxed{D(w)=\sum_{t\geq0}d_t\frac{w^t}{t!}=\exp\!\left(-\frac12W(-2w)-\frac14W(-2w)^2\right),}
 $$
 
-where $W$ is the branch of the Lambert $W$ function with $W(0)=0$, interpreted analytically near the origin or as its formal power series.
+where $W$ is the Lambert $W$ branch satisfying $W(0)=0$.
 
 ## 1. The Generating Function
 
-Differentiating $G$ coefficient by coefficient and applying (D) (the $t=0$ term contributes nothing, since $A_0=1$ is constant),
+Differentiating $G$ coefficient by coefficient and applying (D),
 
 $$
 \begin{aligned}
 \frac{\partial G}{\partial n}
-&=\sum_{t\geq1}2tA_{t-1}(n)\frac{x^t}{t!}
-=2x\sum_{t\geq1}A_{t-1}(n)\frac{x^{t-1}}{(t-1)!}
-=2xG.
+&=\sum_{t\geq1}2tA_{t-1}(n)\frac{x^t}{t!}\\
+&=2x\sum_{t\geq1}A_{t-1}(n)\frac{x^{t-1}}{(t-1)!}\\
+& j:=t-1\\
+&= 2x\sum_{j\ge0}A_j(n)\frac{x^j}{j!}\\
+&\frac{\partial{G}}{\partial{n}}=2xG.
 \end{aligned}
 $$
 
-Hence, by the product rule, $\partial_n\bigl(G\,e^{-2nx}\bigr)=e^{-2nx}\bigl(\partial_nG-2xG\bigr)=0$. Every coefficient of a power of $x$ in $Ge^{-2nx}$ is therefore a polynomial in $n$ with derivative $0$, hence constant. So $Ge^{-2nx}$ equals its value at $n=0$:
+The last equality follows by changing the index from $t$ to $t-1$; the resulting sum is the definition of $G$.
+
+By the product rule,
 
 $$
-G(n,x)=C(x)\,e^{2nx},\qquad C(x):=G(0,x)=\sum_{t\geq0}A_t(0)\frac{x^t}{t!},\qquad C(0)=A_0=1.
+\frac{\partial}{\partial n}\left(Ge^{-2nx}\right)
+=e^{-2nx}\left(\frac{\partial G}{\partial n}-2xG\right)=0.
 $$
 
-The numbers $A_t(0)$ are the constants of integration left over by (D). Condition (B) has not been used yet, and it is what will determine them.
-
-Since $1-2x$ is invertible, define $\Psi(x):=C(x)/(1-2x)$, a series with $\Psi(0)=1$. Then
+Thus each coefficient of $Ge^{-2nx}$ is independent of $n$, so $Ge^{-2nx}=G(0,x)$. Since $G(0,0)=A_0(0)=1$, we have
 
 $$
-\boxed{G(n,x)=(1-2x)\,\Psi(x)\,e^{2nx},\qquad \Psi(0)=1.}
-\tag{1}
+G(n,x)=G(0,x)e^{2nx},\qquad G(0,0)=1.
 $$
 
-The factor $1-2x$ is split off only because it is the factor that appears in Lemma (L). It remains to determine $\Psi$ from (B).
+Since $1-2x$ has constant term $1$, define
+
+$$
+\Psi(x):= \frac{G(0,x)}{(1-2x)}
+$$
+
+This is a valid formal power series and $\Psi(0)=1$. We have
+
+$$
+\boxed{G(n,x)=(1-2x)\Psi(x)e^{2nx},\qquad \Psi(0)=1.}\tag{1}
+$$
+
+The factor $1-2x$ is chosen because it is exactly the factor in the coefficient-transfer lemma used next.
 
 ## 2. The Diagonal and the Next-to-Diagonal
 
-Let $X(w)$ be the series from `lagrange_inversion_lemma.md`. Reading off the coefficient of $x^t$ in (1),
+The coefficient formula from (1) is
 
 $$
-A_t(n)=t!\,[x^t]\,(1-2x)\Psi(x)e^{2nx}.
-\tag{$*$}
+\boxed{A_t(n)=t![x^t](1-2x)\Psi(x)e^{2nx}.}\tag{2}
 $$
 
-**Diagonal.** Put $n=t$ in $(*)$ and apply Lemma (L):
+Let $X(w)$ be the unique formal power series satisfying
 
 $$
-d_t=A_t(t)=t!\,[x^t]\,(1-2x)\Psi(x)e^{2tx}=t!\,[w^t]\,\Psi(X(w)).
+X(w)=we^{2X(w)},\qquad X(0)=0.
 $$
 
-Since $d_t/t!$ is the coefficient of $w^t$ in $D(w)=\sum_t d_t\frac{w^t}{t!}$, this says
+By Lemma (L), proved in `lagrange_inversion_lemma_revised.md`,
 
 $$
-\boxed{D(w)=\Psi(X(w)).}
-\tag{2}
+\boxed{[w^t]\Psi(X(w))=[x^t](1-2x)\Psi(x)e^{2tx}.}\tag{L}
 $$
 
-**Next-to-diagonal.** Let $t\geq1$. Put $t-1$ in place of $t$ and $n=t$ in $(*)$, then use $[x^{t-1}]F=[x^t](xF)$:
+We will use this single identity for both the diagonal and its neighboring values.
+
+**Diagonal.** Put $n=t$ in (2). By (L),
 
 $$
-A_{t-1}(t)=(t-1)!\,[x^{t-1}]\,(1-2x)\Psi(x)e^{2tx}=(t-1)!\,[x^t]\,(1-2x)\bigl(x\Psi(x)\bigr)e^{2tx}.
+A_t(t)=t![x^t](1-2x)\Psi(x)e^{2tx}=t![w^t]\Psi(X(w)).
 $$
 
-Lemma (L), applied to the series $x\Psi(x)$ in place of $\Psi$, turns this into $(t-1)!\,[w^t]\,X(w)\Psi(X(w))$. By (2), this is
+Writing an e.g.f. for the diagonal
 
 $$
-A_{t-1}(t)=(t-1)!\,[w^t]\,X(w)D(w).
+D(w) = \sum_{t\geq0}A_t(t) \frac{w^t}{t!} \\
+\begin{aligned}
+&= \sum_{t\ge0}t![w^t]\Psi(X(w))\frac{w^t}{t!}
+\end{aligned}\\
+
+\boxed{D(w)=\Psi(X(w)).}\tag{3}
+$$
+
+**Next-to-diagonal.** For $t\geq1$, put $n=t$ and replace the polynomial index $t$ in (2) by $t-1$:
+
+$$
+A_{t-1}(t)=(t-1)![x^{t-1}](1-2x)\Psi(x)e^{2tx}.
+$$
+
+The coefficient-shift identity $[x^{t-1}]F(x)=[x^t]xF(x)$ gives
+
+$$
+A_{t-1}(t)=(t-1)![x^t](1-2x)\bigl(x\Psi(x)\bigr)e^{2tx}.
+$$
+
+Apply (L) to the series $x\Psi(x)$, then use (3):
+
+$$
+A_{t-1} = (t-1)![w^t]X(w)\Psi(X(w))\\[1em]
+\boxed{A_{t-1}(t)=(t-1)![w^t]X(w)D(w).}\tag{4}
 $$
 
 ## 3. The Boundary Condition
 
-Write $\delta_t=[w^t]D=d_t/t!$. For $t\geq1$, condition (B) says $A_t(t)=A_{t-1}(t)$, that is, $t!\,\delta_t=(t-1)!\,[w^t](XD)$. Dividing by $(t-1)!$,
+By (B), $A_t(t)=A_{t-1}(t)$. Combining (3) and (4),
 
 $$
-t\,\delta_t=[w^t]\,(XD)\qquad(t\geq1).
+t![w^t]D(w)=(t-1)![w^t]X(w)D(w).
 $$
 
-For $t=0$ both sides are $0$, because $X(0)=0$. Since $wD'(w)=\sum_t t\,\delta_t\,w^t$, these equations for all $t\geq0$ say exactly
+Dividing by $(t-1)!$ gives
 
 $$
-\boxed{wD'(w)=X(w)D(w).}
-\tag{3}
+\boxed{t[w^t]D(w)=[w^t]X(w)D(w),\qquad t\geq1.}\tag{BC}
+$$
+
+The same coefficient identity holds for $t=0$, since both sides are zero: the left has a factor $t$, and $X(0)=0$ makes the constant term of $XD$ zero. By termwise differentiation,
+
+$$
+\begin{aligned}
+D'(w) &= \sum_{t\ge1}\frac{tA_t(t)}{t!}w^{t-1}\\
+wD'(w) &= \sum_{t\geq1}t\frac{A_t(t)}{t!}w^t\\
+wD'(w)&=\sum_{t\geq1}t[w^t]D(w)\,w^t.
+\end{aligned}
+$$
+
+By (BC), the coefficient of $w^t$ in this series equals the coefficient of $w^t$ in $XD$ for every $t\geq1$; both constant terms are zero as well. Therefore,
+
+$$
+\boxed{wD'(w)=X(w)D(w).}\tag{5}
 $$
 
 ## 4. Determining $\Psi$
 
-**An identity for $X$.** Differentiate $X=we^{2X}$ using the product and chain rules: $X'=e^{2X}+2wX'e^{2X}$. Multiply by $w$ and use $we^{2X}=X$:
+**An identity for $X$.** Differentiate $X=we^{2X}$ using the product and chain rules:
 
 $$
-wX'=X+2X\cdot wX',\qquad\text{that is,}\qquad (1-2X)\,wX'=X.
-\tag{4}
+X'=e^{2X}+2we^{2X}X'.
 $$
 
-**The equation in terms of $\Psi$.** By (2) and the chain rule, $D'=X'\Psi'(X)$. Multiply (3) by $1-2X$, and use (4) on the left and (2) on the right:
+Multiply by $w$ and use $we^{2X}=X$:
 
 $$
-X\,\Psi'(X)=(1-2X)\,X\,\Psi(X).
+wX'=X+2XwX',
 $$
 
-Define the series $R(x):=x\bigl(\Psi'(x)-(1-2x)\Psi(x)\bigr)$. The equation above says $R(X(w))=0$.
-
-**Why $R=0$.** Suppose $R\neq0$, and let $r_mx^m$ with $r_m\neq0$ be its lowest-degree term. Since $X(w)=w+(\text{higher terms})$, we get $R(X(w))=r_mw^m+(\text{higher terms})\neq0$, a contradiction. Hence $R=0$, and cancelling the factor $x$ gives
+so
 
 $$
-\Psi'(x)=(1-2x)\Psi(x),\qquad\Psi(0)=1.
-\tag{5}
+\boxed{(1-2X)wX'=X.}\tag{6}
 $$
 
-**Solving (5).** Write $\Psi=\sum\psi_kx^k$. Comparing coefficients of $x^k$ in (5) gives $(k+1)\psi_{k+1}=\psi_k-2\psi_{k-1}$, with $\psi_{-1}=0$ and $\psi_0=1$. This determines every $\psi_k$, so (5) has at most one solution. The series $e^{x-x^2}$ has constant term $1$, and by the chain rule its derivative is $(1-2x)e^{x-x^2}$, so it is a solution. Therefore
+**Obtain an equation for $\Psi$.** By (3), $D=\Psi(X)$. The chain rule gives $D'=X'\Psi'(X)$. Substitute this and $D=\Psi(X)$ into (5):
 
 $$
-\boxed{\Psi(x)=e^{x-x^2}.}
+wX'\Psi'(X)=X\Psi(X).
 $$
 
-Substituting into (1), and using $x-x^2+2nx=(2n+1)x-x^2$, proves the first part of the theorem:
+Multiply by $1-2X$ and use (6):
+
+$$
+X\Psi'(X)=(1-2X)X\Psi(X).
+$$
+
+Hence, with
+
+$$
+R(x):=x\bigl(\Psi'(x)-(1-2x)\Psi(x)\bigr),
+$$
+
+we have $R(X(w))=0$.
+
+**Why this implies $R(x)=0$.** If $R$ were nonzero, let $r_mx^m$ be its lowest-degree nonzero term, with $r_m\neq0$. Since $X(w)=w+\text{higher-degree terms}$, the lowest-degree term of $R(X(w))$ would be $r_mw^m$, so $R(X(w))$ could not be zero. This contradiction shows that $R=0$. Multiplication by $x$ only shifts a series' coefficients, so we can cancel the factor $x$ to obtain
+
+$$
+\boxed{\Psi'(x)=(1-2x)\Psi(x),\qquad \Psi(0)=1.}\tag{7}
+$$
+
+**Solve the equation.** Write $\Psi(x)=\sum_{k\geq0}\psi_kx^k$, with $\psi_{-1}=0$. Comparing coefficients in (7) gives
+
+$$
+(k+1)\psi_{k+1}=\psi_k-2\psi_{k-1}.
+$$
+
+Since $\psi_0=1$, this recurrence determines all coefficients uniquely. The series $e^{x-x^2}$ has constant term $1$ and
+
+$$
+\frac{d}{dx}e^{x-x^2}=(1-2x)e^{x-x^2}.
+$$
+
+It is therefore the unique solution:
+
+$$
+\boxed{\Psi(x)=e^{x-x^2}.}\tag{8}
+$$
+
+Substituting (8) into (1) proves the generating-function formula:
 
 $$
 \boxed{G(n,x)=(1-2x)e^{(2n+1)x-x^2}.}
@@ -177,11 +254,10 @@ $$
 
 ## 5. Hermite-Polynomial Formulas
 
-The physicists' Hermite polynomials are defined by their exponential generating function
+The physicists' Hermite polynomials are defined by
 
 $$
-\sum_{t\geq0}H_t(y)\frac{x^t}{t!}
-=e^{2yx-x^2}.
+\sum_{t\geq0}H_t(y)\frac{x^t}{t!}=e^{2yx-x^2}.
 $$
 
 Set $y=n+\tfrac12$. Then
@@ -190,26 +266,23 @@ $$
 G(n,x)=(1-2x)e^{2yx-x^2}.
 $$
 
-Multiplying the Hermite generating function by $(1-2x)$ gives
+Multiplying the Hermite generating function by $1-2x$ gives
 
 $$
 \begin{aligned}
 G(n,x)
-&=\sum_{t\geq0}H_t(y)\frac{x^t}{t!}\\
-&\quad-2\sum_{t\geq1}tH_{t-1}(y)\frac{x^t}{t!}.
+&=\sum_{t\geq0}H_t(y)\frac{x^t}{t!}
+-2\sum_{t\geq1}tH_{t-1}(y)\frac{x^t}{t!}.
 \end{aligned}
 $$
 
 Comparing coefficients yields
 
 $$
-\boxed{
-A_t(n)=H_t\!\left(n+\frac12\right)
--2tH_{t-1}\!\left(n+\frac12\right).
-}
+\boxed{A_t(n)=H_t\!\left(n+\frac12\right)-2tH_{t-1}\!\left(n+\frac12\right).}
 $$
 
-An alternative expansion follows by writing
+An alternative expansion follows from
 
 $$
 G(n,x)=\bigl[(1-2x)e^x\bigr]e^{2nx-x^2}.
@@ -218,124 +291,96 @@ $$
 Since
 
 $$
-(1-2x)e^x
-=\sum_{m\geq0}(1-2m)\frac{x^m}{m!},
+(1-2x)e^x=\sum_{m\geq0}(1-2m)\frac{x^m}{m!},
 $$
 
-the Hermite generating function at argument $n$ gives
+multiplying by the Hermite generating function at argument $n$ and collecting the coefficient of $x^t$ gives
 
 $$
-\boxed{
-A_t(n)=
-\sum_{k=0}^{t}
-\binom{t}{k}
-\bigl(1-2(t-k)\bigr)H_k(n).
-}
+\boxed{A_t(n)=\sum_{k=0}^{t}\binom{t}{k}\bigl(1-2(t-k)\bigr)H_k(n).}
 $$
-
-Both formulas are consequences of the same generating-function identity.
 
 ## 6. The Diagonal and the Lambert $W$ Function
 
-Recall from §2 that the diagonal sequence $d_t=A_t(t)$ has exponential generating function
+From (3) and (8),
 
 $$
-D(w)=\sum_{t\geq0}d_t\frac{w^t}{t!}=\Psi(X(w)).
+D(w)=\Psi(X(w))=e^{X(w)-X(w)^2}.
 $$
 
-Since $\Psi(x)=e^{x-x^2}$,
+Section 2 identified $X(w)=-\tfrac12W(-2w)$. Substituting this into the exponent gives
 
 $$
-\boxed{D(w)=e^{X(w)-X(w)^2}.}
-\tag{6}
+X(w)-X(w)^2=-\frac12W(-2w)-\frac14W(-2w)^2.
 $$
 
-It remains to express $X(w)$ using the Lambert $W$ function.
-
-Recall that
+Thus the diagonal's exponential generating function is
 
 $$
-X(w)=we^{2X(w)}.
+\boxed{D(w)=\exp\!\left(-\frac12W(-2w)-\frac14W(-2w)^2\right).}
 $$
 
-Rearranging gives
+## 7. Summary of Findings
+
+The recursion and boundary condition uniquely determine the polynomial sequence and its diagonal. The following are equivalent descriptions obtained above.
+
+**Generating function and coefficient formula:**
 
 $$
-X(w)e^{-2X(w)}=w.
+G(n,x)=\sum_{t\geq0}A_t(n)\frac{x^t}{t!}=(1-2x)e^{(2n+1)x-x^2},
 $$
 
-Multiplying by $-2$,
-
 $$
-(-2X(w))e^{-2X(w)}=-2w.
+A_t(n)=t![x^t](1-2x)e^{(2n+1)x-x^2}.
 $$
 
-The Lambert $W$ function is defined by the inverse relation
+**Two Hermite forms:**
 
 $$
-W(z)e^{W(z)}=z.
+A_t(n)=H_t\!\left(n+\frac12\right)-2tH_{t-1}\!\left(n+\frac12\right),
 $$
 
-A series $V$ with $V(0)=0$ and $Ve^{V}=-2w$ is unique, since the coefficient of $w^t$ in $Ve^V$ is $[w^t]V$ plus an expression in the lower coefficients of $V$. So $-2X(w)$ is the series $W(-2w)$.
-
-The solution with $X(0)=0$ consequently satisfies
-
 $$
-\boxed{X(w)=-\frac12W(-2w).}
+A_t(n)=\sum_{k=0}^{t}\binom{t}{k}\bigl(1-2(t-k)\bigr)H_k(n).
 $$
 
-Substituting into (6),
+**Diagonal in terms of Hermite polynomials:**
 
 $$
-\begin{aligned}
-D(w)
-&=\exp\left(
--\frac12W(-2w)
--\frac14W(-2w)^2
-\right).
-\end{aligned}
+d_t=H_t\!\left(t+\frac12\right)-2tH_{t-1}\!\left(t+\frac12\right).
 $$
 
-Hence the diagonal's exponential generating function is
+**Diagonal exponential generating function in terms of Lambert $W$:**
 
 $$
-\boxed{
-D(w)=
-\exp\left(
--\frac12W(-2w)-\frac14W(-2w)^2
-\right).
-}
+D(w)=\sum_{t\geq0}d_t\frac{w^t}{t!}=\exp\!\left(-\frac12W(-2w)-\frac14W(-2w)^2\right).
 $$
 
-This derives the Lambert-$W$ expression directly from the recursive polynomial system, rather than assuming the diagonal's generating function in advance.
-
-## Conclusion
-
-The integral recursion uniquely determines a polynomial sequence whose exponential generating function is
+Together, these give an identity connecting Hermite polynomials evaluated along the diagonal with Lambert $W$:
 
 $$
-G(n,x)=(1-2x)e^{(2n+1)x-x^2}.
+\sum_{t\geq0}\left[H_t\!\left(t+\frac12\right)-2tH_{t-1}\!\left(t+\frac12\right)\right]\frac{w^t}{t!}
+=\exp\!\left(-\frac12W(-2w)-\frac14W(-2w)^2\right).
 $$
 
-Its diagonal has the Lambert-$W$ exponential generating function
+The diagonal begins
 
 $$
-D(w)=
-\exp\left(
--\frac12W(-2w)-\frac14W(-2w)^2
-\right).
+d_0,d_1,d_2,d_3,d_4=1,1,3,19,201.
 $$
 
-The main mechanism is the transformation of the diagonal boundary condition into coefficient identities, followed by Lagrange–Bürmann inversion. The inversion converts those identities into a differential equation for $C(x)/(1-2x)$, which uniquely determines the generating function and yields the diagonal formula.
-
-## Remarks (not used in the proof)
-
-**Worked values.** The first polynomials are $A_0=1$, $A_1=2n-1$, $A_2=4n^2-4n-5$, $A_3=8n^3-12n^2-30n+1$, so $C(x)=1-x-\tfrac52x^2+\tfrac16x^3+\cdots=(1-2x)e^{x-x^2}$. The diagonal begins $d_0,d_1,d_2,d_3,d_4=1,1,3,19,201$. Equation (3) at low order: $X=w+2w^2+\cdots$ and $D=1+w+\tfrac32w^2+\cdots$ give $wD'=w+3w^2+\cdots=XD$.
-
-**Combinatorial meaning of the diagonal.** As described in `lagrange_inversion_lemma.md`, $X(w)$ is the exponential generating function of rooted labeled trees with each edge weighted $2$. In any tree, $\#\text{vertices}-\#\text{edges}=1$. So (tree with a marked vertex) minus (tree with a marked edge) counts each tree once. A marked vertex is counted by $X$. A marked edge splits the tree into an unordered pair of rooted trees ($X^2/2$) and carries weight $2$, so it is counted by $X^2$. Unrooted trees are therefore counted by $X-X^2$, a forest is a set of trees, and
+There is also a combinatorial interpretation. The series $X$ is the exponential generating function for rooted labeled trees with each edge weighted $2$. The exponential generating function for unrooted trees with this edge weight is $X-X^2$: a tree with $t$ vertices has $t$ choices of a marked vertex and $t-1$ choices of a marked edge, so subtracting the edge-rooted count from the vertex-rooted count leaves one copy of each tree. A forest is a set of trees, giving
 
 $$
-D(w)=e^{X-X^2}\quad\Longrightarrow\quad d_t=\sum_{F\text{ a forest on }[t]}2^{\,\#\text{edges}(F)}.
+D(w)=e^{X(w)-X(w)^2}\quad\Longrightarrow\quad d_t=\sum_{F\text{ a forest on }[t]}2^{|E(F)|}.
 $$
 
-For example $d_3=1+3\cdot2+3\cdot4=19$ and $d_4=1+6\cdot2+15\cdot4+16\cdot8=201$. By the standard description of the permutohedron $P_t$ as a zonotope (Stanley), its Ehrhart polynomial is $\sum_F s^{\#\text{edges}(F)}$ over forests $F$ on $[t]$. At $s=2$ this is the number of lattice points of $2P_t$, so $d_t$ is that count. In the proof above, the exponent $x-x^2$ of $\Psi$ is "vertices minus edges", and it was obtained from (D) and (B) alone.
+For instance, on three vertices there is one empty forest, three one-edge forests, and three two-edge trees, so $d_3=1+3\cdot2+3\cdot4=19$. On four vertices, the corresponding count is $1+6\cdot2+15\cdot4+16\cdot8=201$.
+
+The standard forest expansion of the Ehrhart polynomial of the permutohedron $P_t$ is
+
+$$
+\operatorname{Ehr}_{P_t}(s)=\sum_{F\text{ a forest on }[t]}s^{|E(F)|}.
+$$
+
+Setting $s=2$ shows that the same sum counts the lattice points of $2P_t$. This final identification uses the known forest expansion for the permutohedron; it is a combinatorial connection to the result proved here, rather than a step needed to derive the generating functions.
