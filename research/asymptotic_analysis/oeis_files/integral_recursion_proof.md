@@ -1,88 +1,80 @@
-# Integral construction
+# Integral Construction
 
-The polynomial family is defined by
-
-$$
-T(n,0)=1
-$$
-
-and, for $t \ge 1$,
+The polynomial family is defined for each fixed parameter $s>0$ by
 
 $$
-\frac{\partial}{\partial n}T(n,t)=2t\,T(n,t-1),
+A_0(n;s)=1
+$$
+
+and, for $t\geq1$,
+
+$$
+\frac{\partial}{\partial n}A_t(n;s)=st\,A_{t-1}(n;s),
 $$
 
 with boundary condition
 
 $$
-T(t,t)=T(t,t-1).
+A_t(t;s)=A_{t-1}(t;s).
 $$
 
-## From the derivative to the indefinite integral
+## From the Derivative to the Indefinite Integral
 
 Starting with
 
 $$
-\frac{\partial}{\partial n}T(n,t)=2t\,T(n,t-1),
+\frac{\partial}{\partial n}A_t(n;s)=st\,A_{t-1}(n;s),
 $$
 
 integrate both sides with respect to $n$:
 
 $$
-T(n,t)
-=
-\int 2t\,T(n,t-1)\,dn+C_t,
+A_t(n;s)
+=\int st\,A_{t-1}(n;s)\,dn+C_{t,s},
 $$
 
-where $C_t$ is a constant with respect to $n$.
+where $C_{t,s}$ is a constant with respect to $n$.
 
 Using $u$ as the integration variable,
 
 $$
-T(n,t)
-=
-\int 2t\,T(u,t-1)\,du+C_t.
+A_t(n;s)
+=\int st\,A_{t-1}(u;s)\,du+C_{t,s}.
 $$
 
-Thus the derivative recurrence determines $T(n,t)$ up to an additive constant.
+Thus the derivative recurrence determines $A_t(n;s)$ up to an additive constant.
 
-## Determining the constant
+## Determining the Constant
 
 The boundary condition gives
 
 $$
-T(t,t)=T(t,t-1).
+A_t(t;s)=A_{t-1}(t;s).
 $$
 
-Substituting $n=t$ into the indefinite integral gives
+Evaluating the antiderivative at $n=t$ gives
 
 $$
-T(t,t)
-=
-\int 2t\,T(u,t-1)\,du+C_t.
+A_{t-1}(t;s)
+=\left.\int st\,A_{t-1}(u;s)\,du\right|_{u=t}
++C_{t,s}.
 $$
 
 Therefore,
 
 $$
-C_t
-=
-T(t,t-1)
--
-\int 2t\,T(u,t-1)\,du,
+C_{t,s}
+=A_{t-1}(t;s)
+-\left.\int st\,A_{t-1}(u;s)\,du\right|_{u=t}.
 $$
-
-where the indefinite integral is evaluated at $u=t$.
 
 Substituting this back gives the equivalent definite-integral form
 
 $$
 \boxed{
-T(n,t)
-=
-T(t,t-1)
-+
-\int_t^n 2t\,T(u,t-1)\,du
+A_t(n;s)
+=A_{t-1}(t;s)
++\int_t^n st\,A_{t-1}(u;s)\,du
 }
 $$
 
@@ -93,26 +85,24 @@ Differentiating the definite-integral form gives
 $$
 \frac{\partial}{\partial n}
 \left[
-T(t,t-1)
-+
-\int_t^n 2t\,T(u,t-1)\,du
+A_{t-1}(t;s)
++\int_t^n st\,A_{t-1}(u;s)\,du
 \right]
-=
-2t\,T(n,t-1),
+=st\,A_{t-1}(n;s),
 $$
 
 and evaluating at $n=t$ gives
 
 $$
-T(t,t)=T(t,t-1).
+A_t(t;s)=A_{t-1}(t;s).
 $$
 
-Therefore the definite-integral expression satisfies both the derivative recurrence and the boundary condition.
+Therefore, the definite-integral expression satisfies both the derivative recurrence and the boundary condition.
 
 Starting with
 
 $$
-T(n,0)=1,
+A_0(n;s)=1,
 $$
 
-the formula recursively generates the entire tree
+the formula recursively generates the entire polynomial family for each fixed $s>0$.
