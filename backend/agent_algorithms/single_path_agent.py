@@ -2,12 +2,12 @@ from random import choice
 
 from agent_algorithms.agent import Agent
 
-""" This agent will randomly select one path to follow.
-In practice, this means it will choose one belief of what sides were rolled, and continue down that path
-Could be compared to a simplified Monte Carlo Tree Search that only explores one path, and doesn't backtrack."""
-
 
 class SinglePathAgent(Agent):
+    """randomly select one path to follow.
+    In practice, this means it will choose one belief of what sides were rolled, and continue down that path
+    Could be compared to a simplified Monte Carlo Tree Search that only explores one path, and doesn't backtrack."""
+
     def get_action(self, peeks: list, max_search_rounds: int = 20) -> int:
         # Wrap the entire hallucination in a retry loop.
         # If we hit a dead end, we restart the simulation from round 1.

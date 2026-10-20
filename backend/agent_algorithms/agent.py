@@ -10,9 +10,11 @@ class Agent:
         )  # default values for now, will fine tune later
 
     def reset_session(self) -> None:
+        """Reset dice values and depth"""
         self.session.reset()
 
     def simulate_round(self) -> dict:
+        """Simulate a full round, automatically calling self.get_action(). Does not reset session after completion."""
         peeks = []
         for i in range(self.session.num_peeks):
             peeks.append(self.session.peek())
@@ -23,4 +25,5 @@ class Agent:
         return {"payout": payout, "guess": guess, "peeks": peeks, "duration": duration}
 
     def get_action(self, peeks) -> int:
+        """Internal method. Gets the algorithms decision for a specific history of peeks. No actions are implemented on this decision"""
         raise NotImplementedError("This method should be implemented by subclasses")
