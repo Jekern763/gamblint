@@ -332,5 +332,6 @@ if (typeof module !== "undefined" && module.exports) {
     apiStartGame,
     apiGuess,
     handleGuess,
+    handleKeyboardShortcut,
   };
 }

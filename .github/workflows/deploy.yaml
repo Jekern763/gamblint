@@ -38,7 +38,6 @@ jobs:
           aws-region: us-east-1
           role-duration-seconds: 3600
 
-      # Placeholder deployment step
       - name: Deploy
         working-directory: ./infrastructure
         run: pnpm cdk deploy --require-approval never
