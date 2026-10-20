@@ -12,6 +12,8 @@ serializer = TypeSerializer()
 
 
 class DatabaseGateway:
+    """Python object to manipulate AWS Dynamo DB. Also setup for local testing"""
+
     def __init__(self, table_name: str, is_local: bool = False):
         self.table_name = table_name
 
@@ -59,7 +61,7 @@ class DatabaseGateway:
     def commit_guess_transaction(
         self, session_id: str, game_state: str, guess, payout: Decimal, other_data
     ) -> None:
-        # excutes an atomic  write and delete operation.
+        """excutes an atomic  write and delete operation."""
         row = GamePermanentDataRow(
             session_id=session_id,
             game=game_state,

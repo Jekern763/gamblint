@@ -50,7 +50,7 @@ export class GamblintStack extends cdk.Stack {
       entry: path.join(__dirname, "../../backend"),
 
       index: "app.py",
-
+      tracing: lambda.Tracing.ACTIVE,
       logRetention: logs.RetentionDays.ONE_MONTH,
 
       handler: "lambda_handler",
