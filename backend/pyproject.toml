@@ -6,8 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "bayesian-dice-engine"
 version = "0.1.0"
 description = "A Bayesian dice rolling and simulation engine"
-readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 license = "MIT"
 
 classifiers = [
@@ -19,12 +18,12 @@ dependencies = [
     "aws-lambda-powertools>=3.29.0",
     "aws-xray-sdk>=2.15.0",
     "boto3>=1.43.19",
-    "moto[dynamodb]>=5.2.1",
     "pydantic>=2.13.4",
 ]
 
 [dependency-groups]
 dev = [
+    "moto[dynamodb]>=5.2.1",
     "pytest>=8.0.0",
     "pytest-mock>=3.15.1",
     "ruff",
