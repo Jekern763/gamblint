@@ -1,11 +1,30 @@
 import * as cdk from "aws-cdk-lib";
 import { Template, Match } from "aws-cdk-lib/assertions";
 import { GamblintStack } from "../lib/stack";
+import { spawnSync } from "node:child_process";
 describe("Gamblint Stack Infrastructure Tests", () => {
   let template: Template;
+  // NOTE: Docker must be running before executing these tests.
+
+  // Synthesize the template once for all tests to maximize speed
 
   // Synthesize the template once for all tests to maximize speed
   beforeAll(() => {
+    const docker = spawnSync("docker", ["info"], {
+      stdio: "ignore",
+      timeout: 5000,
+    });
+
+    if (docker.error || docker.status !== 0) {
+      throw new Error(
+        [
+          "\nDocker is required to run infrastructure tests.",
+          "The CDK PythonFunction construct uses Docker to bundle the Python Lambda.",
+          "Please start Docker Desktop and try again.",
+        ].join("\n"),
+      );
+    }
+
     const app = new cdk.App();
     const stack = new GamblintStack(app, "TestGamblintStack");
     template = Template.fromStack(stack);
