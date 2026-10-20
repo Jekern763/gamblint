@@ -276,16 +276,52 @@ if (localStorage.getItem("net_score")) {
 
 gameLoop();
 
-window.addEventListener("keydown", (event) => {
-  if (event.key === " " || event.key === "Spacebar" || event.key === "Enter") {
-    event.preventDefault();
+function handleKeyboardShortcut(event) {
+  const actionKeys = [" ", "Spacebar", "Enter"];
 
-    // Ignore the event if the key is just being held down
-    if (event.repeat) return;
-  } else {
-    ui.el("roll-btn").click();
+  if (!actionKeys.includes(event.key)) return;
+
+  const target = event.target;
+
+  // Let Enter submit a guess when the guess input is focused.
+  if (
+    event.key === "Enter" &&
+    target instanceof HTMLInputElement &&
+    target.id === "guess-input"
+  ) {
+    const guessBtn = ui.el("guess-btn");
+
+    if (!event.repeat && !guessBtn.disabled) {
+      event.preventDefault();
+      guessBtn.click();
+    }
+
+    return;
   }
-});
+
+  // Preserve normal behavior for inputs and interactive elements.
+  if (
+    target instanceof Element &&
+    target.closest(
+      "button, a, input, textarea, select, [contenteditable='true']",
+    )
+  ) {
+    return;
+  }
+
+  // Prevent page scrolling when using Space as a game control.
+  event.preventDefault();
+
+  if (event.repeat) return;
+
+  const rollBtn = ui.el("roll-btn");
+
+  if (!rollBtn.disabled) {
+    rollBtn.click();
+  }
+}
+
+window.addEventListener("keydown", handleKeyboardShortcut);
 
 // just for jest testing
 if (typeof module !== "undefined" && module.exports) {
