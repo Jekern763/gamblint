@@ -1,0 +1,13 @@
+Overarching goal is to solve A(n)
+
+General form is A(t, n, k), for A(n) t=n, k=2
+
+First I tried varying n only, brute force style
+
+Then I tried varying k, to see if extractable pattern followed that could be applied to k=2
+
+Now I am working on varying t and n, and have a possible general formula for instances of t=1,2,3
+
+Best case: there is a pattern between equatins for varied t and n, then just set t=n, and that is the equation for A(n)
+
+Current TODO: prove for cases t=1,2,3, then extrapolate any possible properties or sequences of coefficients
