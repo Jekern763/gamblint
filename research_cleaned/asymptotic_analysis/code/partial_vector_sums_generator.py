@@ -24,6 +24,7 @@ import math
 import pickle
 import time
 from collections import Counter, defaultdict
+from pathlib import Path
 from typing import Annotated
 
 import numpy as np
@@ -229,5 +230,11 @@ if __name__ == "__main__":
     MAX_N = 8
     K_VALUES = (2,)
     data = compute_all_truncations_topdown(MAX_N, k_values=K_VALUES)
-    with open("generated_sequence.pkl", "wb") as file:
+
+    DATA_DIR = Path(__file__).resolve().parents[1] / "data"
+    DATA_DIR.mkdir(parents=True, exist_ok=True)
+
+    OUTPUT_PATH = DATA_DIR / "partial_vector_sums.pkl"
+
+    with OUTPUT_PATH.open("wb") as file:
         pickle.dump(data, file)

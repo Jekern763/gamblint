@@ -2,10 +2,14 @@ import gc
 import itertools
 import math
 import pickle
+from pathlib import Path
 
 import numpy as np
 import psutil
 from numba import njit, prange
+
+OUTPUT_DIR = Path(__file__).resolve().parents[1] / "data" / "full_length"
+OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 _MIX = np.int64(-7046029254386353131)
 
@@ -133,19 +137,23 @@ def run_pipeline_for_n(n, max_k=2, checkpoint_interval=5):
 
         # DISK STORAGE CHECKPOINT ENGINE
         if chunk_idx % checkpoint_interval == 0 and chunk_idx > 0:
-            ckpt_path = f"checkpoint_n{n}_chunk{chunk_idx}.pkl"
-            print(f"  [Checkpoint] Persisting master data to disk -> {ckpt_path}")
-            with open(ckpt_path, "wb") as f:
-                pickle.dump(master_unique, f, protocol=pickle.HIGHEST_PROTOCOL)
+            # Checkpoint
+            ckpt_path = (
+                OUTPUT_DIR / f"full_length_vector_sums_n{n}_chunk{chunk_idx}.pkl"
+            )
+
+            with ckpt_path.open("wb") as file:
+                pickle.dump(master_unique, file, protocol=pickle.HIGHEST_PROTOCOL)
 
         start_i = end_i
         chunk_idx += 1
         gc.collect()
 
     # Final Export
-    final_path = f"final_results_n{n}.pkl"
-    with open(final_path, "wb") as f:
-        pickle.dump(master_unique, f, protocol=pickle.HIGHEST_PROTOCOL)
+    final_path = OUTPUT_DIR / f"full_length_vector_sums_n{n}.pkl"
+
+    with final_path.open("wb") as file:
+        pickle.dump(master_unique, file, protocol=pickle.HIGHEST_PROTOCOL)
     print(
         f"SUCCESS: Completed n={n}. Total unique sums tracked: {master_unique.shape[0]:,}"
     )

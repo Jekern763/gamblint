@@ -1,13 +1,17 @@
+"""Just a quick testing script"""
+
 import pickle
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
 
-with open("generated_sequence.pkl", "rb") as file:
+DATA_PATH = Path(__file__).resolve().parents[1] / "data" / "partial_vector_sums.pkl"
+
+with DATA_PATH.open("rb") as file:
     data = pickle.load(file)
 
 data = data[2]
-
 df = pd.DataFrame(data).T.rename_axis(columns="n", index="t")
 
 

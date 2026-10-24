@@ -30,7 +30,13 @@ def print_triangle(triangle):
         print(str(row).replace("[", "").replace("]", ""))
 
 
-with open("b_file.txt", "w") as file:
+from pathlib import Path
+
+OUTPUT_PATH = Path(__file__).resolve().parents[1] / "data" / "b_file.txt"
+OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
+
+
+with OUTPUT_PATH.open("w", encoding="utf-8") as file:
     index_counter = 1  # Track the continuous index for every item
 
     for row in generate_triangle(100):
