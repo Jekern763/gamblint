@@ -4,12 +4,11 @@ This section explores how well different algorithms play the game and how much c
 
 ## The Pipeline
 
-The research follows a four-stage pipeline:
+The research follows a three-stage pipeline
 
 1. **Benchmarking:** The original algorithm implementations in `backend/agent_algorithms/` are imported and run through thousands of simulated games. The raw results are saved as Parquet files.
 2. **Metric generation:** The raw results are processed into CSV tables containing overall performance metrics and metrics grouped by guess, actual roll, and average peek.
 3. **Figure generation:** The metric tables and raw data are used to create graphs comparing the algorithms, examining their behavior, and visualizing their computational costs.
-4. **Interpretation:** The generated graphs and tables provide a basis for comparing algorithms and identifying patterns worth further investigation.
 
 The benchmark data can be regenerated independently of the figures. If only the plotting code changes, there is no need to rerun the simulations, provided the underlying data and metric definitions remain unchanged.
 
@@ -59,7 +58,7 @@ Centralizes the paths used throughout this section, including the data directori
 
 Constructs the seven non-constant agents and eleven constant-guess agents, then runs the benchmarks and saves their results.
 
-### `benchmark_runner.py`
+### `benchmark.py`
 
 Runs an agent for a specified number of rounds, records the results and a function-call-based measure of computational effort, and optionally saves the results as a Parquet file.
 
