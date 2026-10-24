@@ -1,13 +1,18 @@
 import sys
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
 from sklearn.feature_selection import mutual_info_regression
 
-sys.path.append("../game_analysis")
+RESEARCH_ROOT = Path(__file__).resolve().parents[2]
+SHARED_CODE_DIR = RESEARCH_ROOT / "shared" / "code"
+HISTORY_DATA_PATH = RESEARCH_ROOT / "game_analysis" / "data" / "analysis_by_history.pkl"
 
+if str(SHARED_CODE_DIR) not in sys.path:
+    sys.path.insert(0, str(SHARED_CODE_DIR))
 
-history_df = pd.read_pickle("../game_analysis/data/analysis_by_history.pkl")
+history_df = pd.read_pickle(HISTORY_DATA_PATH)
 
 
 def history_to_vector(row):

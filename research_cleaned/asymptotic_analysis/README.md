@@ -1,6 +1,6 @@
 # Asymptotic Analysis README
 
-This section is meant to explore the game beyond its physical bounds. Originally, the goal was to let the number of sides tend to infinity, but that proved difficult, and the game itself did not provide much insight into the problem. However, as described in `notes/discover.md`, I eventually transitioned the research to an admittedly large tangent.
+This section is meant to explore the game beyond its physical bounds. Originally, the goal was to let the number of sides tend to infinity, but that proved difficult, and the game itself did not provide much insight into the problem. However, as described in `notes/discovery.md`, I eventually transitioned the research to an admittedly large tangent.
 
 There are artifacts from the original research, and I've done my best to distinguish them from the newer work. This README acts as a basic summary of each directory and, where necessary, the individual files within it.
 
