@@ -7,7 +7,7 @@ from sklearn.feature_selection import mutual_info_regression
 sys.path.append("../game_analysis")
 
 
-history_df = pd.read_pickle("../shared/data/game_analysis/analysis_by_history.pkl")
+history_df = pd.read_pickle("../game_analysis/data/analysis_by_history.pkl")
 
 
 def history_to_vector(row):
