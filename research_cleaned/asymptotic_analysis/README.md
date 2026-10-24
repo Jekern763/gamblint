@@ -50,7 +50,7 @@ Similar to the full-length generator, but also computes distinct partial vector 
 
 ### `partial_vector_sums_generator.rs`
 
-Parallelized Rust implementation of the partial-vector-sum computation. This contains the raw Rust code, without the surrounding Rust project tooling.
+Parallelized Rust implementation of the partial-vector-sum computation. This contains the raw Rust code, without the surrounding Rust project tooling. Dependencies are Rayon and sysinfo
 
 ## data
 
