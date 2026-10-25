@@ -70,7 +70,7 @@ $$
 N(p, S) = \left|
     \left\{
         \begin{array}{l}
-            (x, y) \in A^{(1)} \times A^{(2)} : x+y=S
+            (x, y) \in A^{(1)} \times A^{(2)} : x+y=p
         \end{array}
     \right\}
 \right|  

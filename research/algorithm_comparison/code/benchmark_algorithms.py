@@ -1,32 +1,14 @@
-import sys
-from pathlib import Path
-
-CODE_DIR = Path(__file__).resolve().parent
-if str(CODE_DIR) not in sys.path:
-    sys.path.append(str(CODE_DIR))
-
-from algorithm_paths import (
-    RAW_DATA_DIR,
-    ensure_backend_importable,
-)
-
-# Add the backend root before importing its agent packages.
-ensure_backend_importable()
-
-from algorithm_paths import ensure_backend_importable
-
-ensure_backend_importable()
-
-from agent_algorithms.average_agent import AverageAgent
-from agent_algorithms.constant_agent import ConstantAgent
-from agent_algorithms.expectimax_agent import ExpectimaxAgent
-from agent_algorithms.heuristic_agent import (
+from agent_algorithms.average_agent import AverageAgent  # type:ignore
+from agent_algorithms.constant_agent import ConstantAgent  # type:ignore
+from agent_algorithms.expectimax_agent import ExpectimaxAgent  # type:ignore
+from agent_algorithms.heuristic_agent import (  # type:ignore
     GamblersFallacyAgent,
     InvariantAgent,
     ReflectionAgent,
 )
-from agent_algorithms.random_agent import RandomAgent
-from agent_algorithms.single_path_agent import SinglePathAgent
+from agent_algorithms.random_agent import RandomAgent  # type:ignore
+from agent_algorithms.single_path_agent import SinglePathAgent  # type:ignore
+from algorithm_paths import RAW_DATA_DIR
 from benchmark import benchmark
 
 NUM_RUNS = 10_000

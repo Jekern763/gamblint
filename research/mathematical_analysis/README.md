@@ -13,14 +13,14 @@ This section develops the mathematical model of the game: the payout and optimal
 The proofs are numbered in their original order. They are preserved as close to the original drafts as possible; edits are limited to clear mathematical, indexing, notation, and cross-reference errors.
 
 1. [`p1_optimal_guess_function.md`](proofs/p1_optimal_guess_function.md) — optimal guess and its properties.
-2. [`p2_maximum_payout_function.md`](proofs/p2_maximum_payout_function.md.md) — maximum payout and its properties.
-3. [`p3_invariant_sum.md`](proofs/p3_invariant_sum.md.md) — invariant sum.
-4. [`p4_game_state_transition.md`](proofs/p4_game_state_transition.md.md) — state transitions.
+2. [`p2_maximum_payout_function.md`](proofs/p2_maximum_payout_function.md) — maximum payout and its properties.
+3. [`p3_invariant_sum.md`](proofs/p3_invariant_sum.md) — invariant sum.
+4. [`p4_game_state_transition.md`](proofs/p4_game_state_transition.md) — state transitions.
 5. [`p5_peek_likelihood_given_state.md`](proofs/p5_peek_likelihood_given_state.md) — next-peek probability given the state.
 6. [`p6_state_likelihood.md`](proofs/p6_state_likelihood.md) — probability of an ordered state.
 7. [`p7_history_state_probability.md`](proofs/p7_history_state_probability.md) — joint history/state probability and posterior state probability.
 8. [`p8_next_peek_likelihood.md`](proofs/p8_next_peek_likelihood.md) — next-peek probability given the observed history.
-9. [`p9_expected_value.md`](proofs/p9_expected_value.md.md) — expected value and optimal legal guess.
+9. [`p9_expected_value.md`](proofs/p9_expected_value.md) — expected value and optimal legal guess.
 
 ## Notes and archive
 

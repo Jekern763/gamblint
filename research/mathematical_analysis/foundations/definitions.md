@@ -136,9 +136,9 @@ $$
 
 $$
 S_t = (A_t^{(1)},A_t^{(2)})
-$$$$
 S_0=(D_n,D_n).
 $$
+
 ## Observed and Future Sums
 
 Let
