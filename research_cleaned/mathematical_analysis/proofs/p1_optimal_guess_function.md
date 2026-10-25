@@ -53,14 +53,15 @@ $$
 \forall \space g,r\in\mathbb{R}
 $$
 
-Consequently, if $G(r)$ is an optimal guess for roll $r$, then
+Consequently, the set of optimal guesses reflects across $r=7$. For $r \ne 7$, where the optimal guess is unique, this gives
 
 $$
-G(r)=14-G(14-r) \\[1em]
-\square \\[2em]
+G(r)=14-G(14-r).
 $$
 
-Note, that all future parts of p1 will be solved for $r \le 7$
+At $r=7$, the two optimal guesses are $6$ and $8$, which reflect to each other. $\square$
+
+Note that all future parts of p1 will be solved for $r \le 7$
 
 ---
 
@@ -145,7 +146,7 @@ p\left(\frac{r+5}{2}, r\right) = \left(\frac{9-r}{2}\right)^2 \\[1.5em]
 p\left(\frac{r+9}{2}, r\right) = \left(\frac{r-5}{2}\right)^2
 $$
 
-Because $r \le 7$, $9-r \ge 2$, meaning the first payout is $\ge 1$. Conversely, $r-5 \le 2$, meaning the second payout is $\le 1$. Therefore, the global maximum remains $g = \frac{r+5}{2}$.
+Because $r \le 7$, $9-r \ge 2$, meaning the first payout is $\ge 1$. Conversely, $r-5 \le 2$, meaning the second payout is $\le 1$. For $5 \le r < 7$, the first payout is strictly larger; at $r=7$, the two payouts are equal, so both $g=6$ and $g=8$ are optimal.
 
 so
 $$
@@ -228,7 +229,7 @@ $$
 6 \not = 8 \\[1em]
 $$
 
-Therefore $G(r)$ is not strictly a function.
+Therefore the argmax is set-valued at $r=7$: the optimal guesses are $G(7)=\{6,8\}$. Thus $G$ is not a single-valued function there unless a tie-breaking rule is chosen.
 
 ### p1.5.2 continuity
 
@@ -238,20 +239,15 @@ $$
 \lim _{r \rightarrow b^+}(G(r)) = \lim _{r \rightarrow b^-}(G(r))
 $$
 
-But as shown in `p1.5.1`, that is not true for $b=7$. But also as shown, $G(r)$ is continous $r \not = 7$, by the reflection property of `p1.5.1` at $r=5$.
+As shown in `p1.5.1`, the two branches disagree at $r=7$, so the set-valued optimizer is not an ordinary single-valued function there. If one chooses either branch consistently as a single-valued selection, its continuity must be considered separately; the displayed selection jumps at $r=7$. At $r=5$ and $r=9$, the neighboring formulas agree.
 
 ### p1.5.3 differentiability
 
-Because $G(r)$ is not continuus at $r=7$ it is not differentiable at $r=7$. So instead testing for $r=5$ (and using the reflection property)
+Because the optimizer is not single-valued at $r=7$, ordinary differentiability is not defined there without a tie-breaking rule. So instead test the branch change at $r=5$ (and use the reflection property)
 
-For $G(r)$ to be differentiable at $r=5$
-$$
-G'_-(5) = G'_+(5) \\[1em]
-1 = \frac{1}{2} + \frac{3}{2} \\[1em]
-1 \not = 2 \\[1em]
-$$
+At $r=5$, the left-hand derivative is $1$, while the right-hand derivative is $1/2$. Since these are unequal, the selected branch is not differentiable at $r=5$. By reflection, the same holds at $r=9$. At $r=7$, the optimizer is set-valued, so differentiability is not defined unless a tie-breaking rule is chosen.
 
-Therefore $G(r)$ is not differentiable at any breakpoint:
+Therefore, for the displayed branches, differentiability fails at the breakpoints as described above:
 
 $$
 r=5 \\
@@ -261,11 +257,6 @@ $$
 
 ### p1.5.4 injectivity
 
-For $G(r)$ to be 1-to-1, no inputs must yield the same output, but by the reflection property:
+For $G(r)$ to be one-to-one, no two distinct inputs may produce the same output. The reflection property alone does not imply that $G(r)=G(14-r)$; instead, it gives $G(r)=14-G(14-r)$ for reflected optimal guesses.
 
-$$
-G(r) = G(14-r) \\
-r \not = 14-r
-$$
-
-Therefore $G(r)$ is not 1-to-1
+At $r=7$, the optimizer is set-valued, with optimal guesses $6$ and $8$. If a single-valued function is desired, choosing either $6$ or $8$ as the tie-break at $r=7$ gives an injective selection of the displayed branches. Therefore the original claim that $G$ is not injective does not follow and is incorrect.

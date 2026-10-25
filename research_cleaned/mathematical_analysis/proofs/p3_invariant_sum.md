@@ -16,7 +16,7 @@ $$
 \Sigma_{P_t} = \sum_{i=1}^tp_i
 $$
 
-Where $m$ is the number of turns after the player guesses and $p_i$ is the $i$th sum observed.
+Where $p_i$ is the $i$th sum observed. (The standard game uses $m=5$, so the player guesses after observing $p_4$.)
 
 Let
 
@@ -40,7 +40,7 @@ $$
 = (n)(n+1) = n^2+n
 $$
 
-## p3.2 When $t=m=4$ and $n=6$
+## p3.2 When $t=4$ and $n=6$
 
 Plugging into the formula for $n=6$
 
@@ -48,7 +48,7 @@ $$
 \Sigma_{P_t} + \Sigma_{F_t} = (n+1)(n) = 42
 $$
 
-Follwing, with $m=4$, and at $t=m$
+Following, after four peeks, at $t=4$
 
 $$
 \Sigma_{P_4} + \Sigma_{F_4} = 42 \\[1em]
@@ -56,4 +56,4 @@ $$
 avg(F_4) = \frac{42 - \Sigma_{P_4}}{2}
 $$
 
-Thus, after the fourth observed sum, the average value of the four remaining sums is completely determined by the first four observations:
+Thus, after the fourth observed sum, the average value of the two remaining sums is completely determined by the first four observations:

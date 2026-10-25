@@ -1,3 +1,6 @@
+> **Archived original conjectures — written before the later proofs and not updated.**
+> The material below is preserved verbatim, including conjectures that may since have been disproved or corrected. Treat it as a record of the original research process, not as a statement of current results.
+
 # Conjectures
 
 Conjectures will be organized, starting with c1, and for sub conjectures moving down to c1.1. All conjectures will use notation defined in definitions and derivations. Any relevant matierial outside of those will be referenced at the beginning of the conjecture if it uses it.

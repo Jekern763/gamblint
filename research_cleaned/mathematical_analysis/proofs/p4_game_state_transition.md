@@ -28,7 +28,7 @@ S_{t+1}:
 \right\}
 $$
 
-Such that $S_{t+1}$ is any possible game state after a side has been removed from each die.
+Such that $S_{t+1}$ is any possible **ordered** game state after a side has been removed from each die.
 
 ## p4.2 Cardinalty of $\mathcal{T}(S_t)$
 
@@ -129,14 +129,14 @@ $$
 = \frac{
     \text{possible rolls consistent with the peek and the state}
 }{
-    \text{possible rolls consitent with the peek}
+    \text{possible rolls consistent with the peek}
 }
 $$
 
 And in order to use in context let
 
 $$
-\mathcal{N}_{S_t, p_t}(t)=
+\mathcal{N}_{S_{t+1}, p_{t+1}}(t+1)=
 \left|\left\{
         (x_{t+1}, y_{t+1}) :
         \begin{array}{l}
@@ -150,7 +150,7 @@ $$
 and
 
 $$
-\mathcal{N}_{p_t}(t)= \left|\left\{
+\mathcal{N}_{p_{t+1}}(t+1)= \left|\left\{
         (x_{t+1}, y_{t+1}):
         \begin{array}{l}
             x_{t+1} \in A_t^{(1)} \\

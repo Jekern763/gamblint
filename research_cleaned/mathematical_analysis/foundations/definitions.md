@@ -7,40 +7,34 @@ Let $t$ denote the current turn, or equivalently, the number of peeks that have 
 Let $m$ denote the turn on which the player submits a guess.
 
 For the standard game,
-
-$
+$$
 m = 5
-$
-
+$$
 Equivalently, the player observes $m-1 = 4$ peeks before making a guess.
 
 ## Guess
 
 Let $g$ denote the player's guess, submitted immediately before turn $m$, where
-
-$
+$$
 g \in \mathbb{Z}, \qquad 2 \le g \le 12.
-$
+$$
 
 ## Roll
 
 Let $r$ denote the actual roll observed on turn $m$, where
-
-$
+$$
 r \in \mathbb{Z}, \qquad 2 \le r \le 12.
-$
+$$
 
 ## Peeks
 
 Let $p_t$ denote the last observed sum, such that $p_1$ is the first observed peek.
 
 Let
-
-$
+$$
 P_t = (p_1,p_2,\ldots,p_t)
-$
-
-denote the ordered observation history available to the player at time t
+$$
+denote the ordered observation history available to the player at time $t$.
 
 Let
 
@@ -48,11 +42,11 @@ $$
 F_t = (p_{t+1}, p_{t+2}, \ldots,p_n)
 $$
 
-Be the future peeks, not observed after turn $t$
+Be the future peeks, not observed after turn $t$.
 
 Also, let $x_t$ be the roll on $\mathcal{D}_1$ at turn $t$
 
-Similarly, let $y_t$ be the roll on $\mathcal{D}_2$ at turn $t$
+Similarly, let $y_t$ be the roll on $\mathcal{D}_2$ at turn $t$.
 
 Then let
 
@@ -60,96 +54,79 @@ $$
 X_t = \set{x_1, x_2, ..., x_t}
 $$
 
-Similarly
+Similarly,
 
 $$
 Y_t = \set{y_1, y_2, ..., y_t}
 $$
 
+is the set of faces already rolled on the second die through turn $t$.
+
 ## Payout Formula
 
-$
+$$
 p(g,r)=(2-|g-r|)|g-7|
-$
-See `figures/payout.html` for a graph
+$$
+See `figures/payout.html` for a graph.
 
 ### Accuracy Section
 
 The factor
-
-$
+$$
 2-|g-r|
-$
-
+$$
 determines the payout based on the accuracy of the player's guess.
 
 ### Riskiness Section
 
 The factor
-
-$
+$$
 |g-7|
-$
-
+$$
 determines the payout based on the riskiness of the player's guess (its distance from the median roll of 7).
 
 ## Depleting Dice
 
 Let
-
-$
+$$
 D_n=\{1,2,\ldots,n\}
-$
-
+$$
 denote the set of faces of an $n$-sided die.
 
 A depleting die is an ordered pair
-
-$
+$$
 \mathcal{D}=(D_n,A_t),
-$
-
+$$
 where
-
-$
+$$
 A_t\subseteq D_n
-$
-
+$$
 is the set of currently available faces after turn $t$.
 
 Initially,
-
-$
+$$
 A_0=D_n.
-$
-
+$$
 Whenever the die is rolled, a value
-
-$
+$$
 r\in A_t
-$
-
+$$
 is selected uniformly at random, after which
-
-$
+$$
 A_{t+1}=A_t\setminus\{r\}.
-$
-
+$$
 Thus every face may be rolled at most once.
 
-It can then be derived that the set of all sides rolled on a single die, after $n$ rolls will form a permutation of $\set{1, 2, ..., n}$
+It can then be derived that the set of all sides rolled on a single die, after $n$ rolls, will form a permutation of $\set{1, 2, ..., n}$.
 
 For the standard game,
-
-$
+$$
 n=6.
-$
-
+$$
 Also
-
-$
+$$
 t_{max} = n
-$
+$$
 
 ## Game State
 
@@ -157,14 +134,11 @@ $
 - $A_t^{(2)}$ is the set of available faces on the second die,
 - $P_t$ is the ordered observation history.
 
-$
+$$
 S_t = (A_t^{(1)},A_t^{(2)})
-$
-
-$
+$$$$
 S_0=(D_n,D_n).
-$
-
+$$
 ## Observed and Future Sums
 
 Let

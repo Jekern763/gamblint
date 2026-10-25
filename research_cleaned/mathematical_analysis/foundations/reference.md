@@ -7,9 +7,9 @@
 | $n$ | Number of sides on each die (standard game: $n=6$) |
 | $g$ | Player's guess |
 | $r$ | Actual roll on the guessing turn |
-| $X_t$ | The set of all rolls on the first die before turn $t$ |
+| $X_t$ | The set of all rolls on the first die through turn $t$ |
 | $x_t$ | The roll on the first die on turn $t$ |
-| $Y_t$ | The set of all rolls on the second die before turn $t$ |
+| $Y_t$ | The set of all rolls on the second die through turn $t$ |
 | $y_t$ | The roll on the second die on turn $t$ |
 | $p_t$ | Observed sum on turn $t$ |
 | $P_t$ | Ordered observation history $(p_1,\ldots,p_t)$ |
@@ -26,7 +26,7 @@
 | $\Sigma_{P_t}$ | The sum of all observed peeks |
 | $\Sigma_{F_t}$ | The sum of all future peeks |
 | $\mathcal{T}(S_t)$ | The set of all possible game states after given state $S_t$ |
-| $P(S_{t+1} \| S_t)$ | The probaility of the next state of the game |
-| $N(p, S)$ | The number of ways a peek $p$ can be made with state $S$ |
-| $P(p_{t+1} \| S_t)$ | The probability of the next peek given the state |
-| $P(S_t)$ | The probability of getting to any game state |
+| $P(S_{t+1} \mid S_t)$ | The probability of the next state of the game |
+| $N(p, S)$ | The number of ordered roll pairs producing peek $p$ from state $S$ |
+| $P(p_{t+1} \mid S_t)$ | The probability of the next peek given the state |
+| $P(S_t)$ | The probability of reaching an ordered game state |

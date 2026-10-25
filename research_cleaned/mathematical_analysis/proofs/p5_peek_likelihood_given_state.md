@@ -1,4 +1,4 @@
-# p5: Peek Liklihood Given State
+# p5: Peek Likelihood Given State
 
 See `c7`
 
@@ -35,22 +35,23 @@ P(S_{t+1} | S_t) =
 \end{cases}
 $$
 
-## p5.1: Number of Combinations of $x_t + y_t = p_t$
+## p5.1: Number of Combinations of $x_{t+1} + y_{t+1} = p_{t+1}$
 
 Let
 
-$$\mathcal{N}_{p_{t}}(t) \\
-p \in \mathbb{Z}$$
+$$
+\mathcal{N}_{p_{t+1}}(S_t), \qquad p_{t+1} \in \mathbb{Z}
+$$
 
-be the number of ways $p$ can be made from the current state $S$
+be the number of ordered roll pairs that produce peek $p_{t+1}$ from the current state $S_t$
 
 So
 
 $$
-\mathcal{N}_{p_{t}}(t) = \left|
+\mathcal{N}_{p_{t+1}}(S_t) = \left|
     \left\{
         \begin{array}{l}
-            (x_{t+1,} y_{t+1}) \in A^{(1)} \times A^{(2)} : x_{t+1}+y_{t+1}=p_{t+1}
+            (x_{t+1}, y_{t+1}) \in A_t^{(1)} \times A_t^{(2)} : x_{t+1}+y_{t+1}=p_{t+1}
         \end{array}
     \right\}
 \right|  
@@ -59,19 +60,19 @@ $$
 ## p5.2: $P(p_{t+1} | S_t)$ in general
 
 $$
-P(p_{t+1} | S_t) = \frac{\mathcal{N}_{p_{t+1}}(t+1)}{|A_t^{(1)} \times A_t^{(2)}|} \\[1em]
-P(p_{t+1}|S_t) = \frac{\mathcal{N}_{p_{t+1}}(t+1)}{(n-t)^2}
+P(p_{t+1} | S_t) = \frac{\mathcal{N}_{p_{t+1}}(S_t)}{|A_t^{(1)} \times A_t^{(2)}|} \\[1em]
+P(p_{t+1}|S_t) = \frac{\mathcal{N}_{p_{t+1}}(S_t)}{(n-t)^2}
 $$
 
-## p5.3: $P(P_{t+1}| S_t)$ for $t=4$
+## p5.3: $P(p_{t+1}| S_t)$ for $t=4$
 
 Because in this specific game the player guesses after seeing $p_4$ at $t=4$, we can simplify the equation
 
 $$
 |A^{(1)}| = |A^{(2)}| = 2 \\
-|A^{(1)} \times A^{(2)}| = 4 \\[1em]
+|A_t^{(1)} \times A_t^{(2)}| = 4 \\[1em]
 \therefore \\[1em]
 \boxed{
-    P(p_{t+1} | S_t) = \frac{\mathcal{N}_{p_{t+1}}(t+1)}{4}
+    P(p_{t+1} | S_t) = \frac{\mathcal{N}_{p_{t+1}}(S_t)}{4}
 }
 $$

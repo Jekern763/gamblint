@@ -1,4 +1,4 @@
-# p6: State and Peeks Liklihood
+# p6: State and Peeks Likelihood
 
 In order to apply Bayes Theorem in later proofs, we must define
 
@@ -6,7 +6,7 @@ $$
 P(S_t)
 $$
 
-## p6.1 $P(S_t)$
+## p6.1 $P(S_t)$ (ordered states)
 
 Recall
 
@@ -17,8 +17,10 @@ $$
 Where
 
 $$
-A_t^{(d)} = \set{\text{Remaining Faces on Depleting Die }\mathcal{D}_d}
+A_t^{(d)} = \set{\text{Remaining Faces on Depleting Die }\mathcal{D}_d}.
 $$
+
+Here $S_t$ is the ordered pair defined in `foundations/definitions.md`; this formula is for labeled dice, before any implementation-level merging of swapped states.
 
 So at time $t$ we have removed $t$ sides.
 

@@ -2,7 +2,7 @@
 
 See `c1`, `c3`
 
-See `p1` for proof of $G(r)$
+See `p1_optimal_guess_function.md` for proof of $G(r)$
 
 Let
 
@@ -15,7 +15,7 @@ So that $M(r)$ is the maximum payout for a given roll, for all guesses.
 Using
 
 $$
-G(r) = \argmax _{g \in \mathbb{(R))}}(p(g, r)) \\[1em]
+G(r) = \argmax _{g \in \mathbb{R}}(p(g, r)) \\[1em]
 
 =
 
@@ -42,12 +42,12 @@ $$
 
 ## p2.1: symetry about $r=7$
 
-As proven in `p1`, $G(r)$ is symetrical around $r=7$, as is $p(g, r)$. Therefore, $M(r)$ has the same property:
+As proven in `p1_optimal_guess_function.md`, $G(r)$ is symetrical around $r=7$, as is $p(g, r)$. Therefore, $M(r)$ has the same property:
 
 $$
 M(r) = M(14-r) \\
 \text{or}\\
-M(r+7) = M(r-7)
+M(7+x) = M(7-x)
 $$
 
 ## p2.2: $r \in (-\infin, 5] \cup [9, \infin) \text{ or } r \le 5 \cup r \ge 9$
@@ -118,11 +118,11 @@ $$
 
 See `figures/maximum_payout` for graph
 
-## p1.6 Properties
+## p2.6 Properties
 
 Determing certain properties for this function: funciton validity, continuity, differentiability, injectivity
 
-### p1.6.1 function validity
+### p2.6.1 continuity
 
 Does each input produce only on output?
 
@@ -153,14 +153,14 @@ For $x = 7$
 
 $$
 \frac{(9-7)^2}{4} = \frac{(7-5)^2}{4} \\[1em]
-\frac{(2)^2}{2} = \frac{(2)^2}{2}
+\frac{(2)^2}{4} = \frac{(2)^2}{4}
 $$
 
 Therefore for all $r$, $M(r)$ produces only one output.
 
-Because $M(r)$ is proven to be a proper function, $M(r)$ is also continuus for all $r \in \mathbb{R}$
+The matching one-sided values at $r=5,7,9$ show that the pieces join continuously. Therefore $M(r)$ is continuous for all $r \in \mathbb{R}$.
 
-### p1.6.2 differentiability
+### p2.6.2 differentiability
 
 For $M(r)$ to be differentiable
 
@@ -186,7 +186,7 @@ $$
 
 Therefore for all $r \not = 7$, $M(r)$ is differentiable
 
-### p1.6.3 injectivity
+### p2.6.3 injectivity
 
 Because $M(r)$ is reflected across 7, we know that
 
