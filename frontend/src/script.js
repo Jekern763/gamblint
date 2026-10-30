@@ -276,12 +276,24 @@ if (localStorage.getItem("net_score")) {
 
 gameLoop();
 
-window.addEventListener("keydown", (event) => {
+function handleKeyboardShortcut(event) {
+  const target = event.target;
+
+  // Enter in the guess input should submit the guess.
+  if (event.key === "Enter" && target.id === "guess-input") {
+    if (!ui.el("guess-btn").disabled) {
+      event.preventDefault();
+      ui.el("guess-btn").click();
+    }
+    return;
+  }
+
+  // Space or Enter can roll when focused on the page itself.
   const rollKeys = [" ", "Spacebar", "Enter"];
 
   if (!rollKeys.includes(event.key)) return;
 
-  const target = event.target;
+  // Don't interfere with typing or interacting with other controls.
   if (
     target instanceof Element &&
     target.closest(
@@ -291,13 +303,14 @@ window.addEventListener("keydown", (event) => {
     return;
   }
 
-  event.preventDefault();
-
-  // Ignore repeated events when a key is held down
+  // Prevent repeated rolling when holding down a key.
   if (event.repeat) return;
 
+  event.preventDefault();
   ui.el("roll-btn").click();
-});
+}
+
+window.addEventListener("keydown", handleKeyboardShortcut);
 
 // just for jest testing
 if (typeof module !== "undefined" && module.exports) {
