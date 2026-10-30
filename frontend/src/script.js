@@ -277,14 +277,26 @@ if (localStorage.getItem("net_score")) {
 gameLoop();
 
 window.addEventListener("keydown", (event) => {
-  if (event.key === " " || event.key === "Spacebar" || event.key === "Enter") {
-    event.preventDefault();
+  const rollKeys = [" ", "Spacebar", "Enter"];
 
-    // Ignore the event if the key is just being held down
-    if (event.repeat) return;
-  } else {
-    ui.el("roll-btn").click();
+  if (!rollKeys.includes(event.key)) return;
+
+  const target = event.target;
+  if (
+    target instanceof Element &&
+    target.closest(
+      'input, textarea, select, button, a, [role="button"], [role="link"], [contenteditable]:not([contenteditable="false"])',
+    )
+  ) {
+    return;
   }
+
+  event.preventDefault();
+
+  // Ignore repeated events when a key is held down
+  if (event.repeat) return;
+
+  ui.el("roll-btn").click();
 });
 
 // just for jest testing

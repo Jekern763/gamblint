@@ -1,41 +1,56 @@
-# Organization for research
+# Research
 
-## notebooks
+Research in this sense is a very broad term. Everything in this directory is related only by one thing, it was inspired by the game mechanic found in `backend/`. The way they are inspired is varied, as some are direct analysis of the game, some investigate componenets of the game, and some are a very tangential ideas. In this README you can see the basic outline of the directory, with a very brief abstract about each section. Within each section you will find more in depth README's, and documentation within each file.
 
-Notebooks will be mainly used to show physicaly taken notes, likely in pdf format
+## Conventions and Dependencies
 
-## paper
+To initialize this project, make sure you have uv installed, and that you are located in the  `research` directory. Then run `uv sync` and all packages will install according to the dependencies in this project. It is worth noting that `backend` has a separate set of dependencies and will create a separate virtual environment.
 
-This directory will store all work on the formalized research paper
+Each sub directory under `research` has the same general structure. In each are some common directory names.
 
-## index
+- `code`: quick scripts, generation scripts, or any code in any language is here
+- `notes`: quick notes, not necessarily with complete information. Mostly markdown
+- `archive`: outdated or stale work.
+- `data`: raw and generated data
+- `figures`: generated images, mostly graphs
+- `proofs`: only mathematical proofs that have been completed and are correct
 
-Serves as the base of operations, compiling all current, upcoming, and recent work. Starts with 00 to bring it to the top
+Not all sections will have every sub directory, and some other sub directories may be present.
 
-## conjectures
+## Overview
 
-Any completely unproven ideas
+### `research/algorithm_comparison/`
 
-## proofs
+This section takes the multiple algorithms found in `backend/agent_algorithms`, then benchmarks and compares them. Includes many graphs, most of the code is generation of the graphs
 
-Formalized proofs of any given conjecture
+### `research/asymptotic_analysis/`
 
-## simulations
+This began as the study of what happens when certain game parameters are sent to infinity. Now, it is the most tangential part of the project, but also still interesting. Make sure to read `research/asymptotic_analysis/notes/discovery.md` to see the thought process behind it.
 
-any agent simulations or graphing done
+### `research/game_analysis/`
 
-## definitions
+This is a fully computational analysis of the game, taking into account every possible game outcome. Many graphs are generated, to compare different metrics that arise from the game.
 
-Defining the state space of the model, giving everything a name
+### `research/interactive_graph/`
 
-## results
+This is the simplest place to start, because it is just little sandbox to see what happens within the game. Read `research/interactive_graph/how_to.md` to learn how to get it started (make sure you have the dependencies installed)
 
-Any formulas or variables derived and proved in proofs
+### `research/mathematical_analysis/`
 
-## reference
+This section is purely theoretical, and mostly boils down to set counting. It derives formulas for maximum payout, and the probabilities of the game
 
-A quick reference table for all defined notations
+### `research/paper/`
 
-## figures
+Contains the final, overarching research paper.
 
-Simple images of any figures generated.
+### `research/shared/`
+
+Not much in here, but maybe more will be added with future research
+
+### `research/vector_analysis/`
+
+This section was briefly started, but is unfinished currently
+
+## A quick note on AI use
+
+My goal was to make this research as handmade as possible. That does not mean I did not use AI, but I made it a point not to copy in large chunks of code or mathematical proofs. I did use free models of Claude, Gemini, and ChatGPT, mainly as brainstorming, learning, or boiler plate writing tools.
