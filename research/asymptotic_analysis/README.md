@@ -48,7 +48,7 @@ Old research code that enumerates the distinct full-length vector sums of two pe
 
 Similar to the full-length generator, but also computes distinct partial vector sums for shorter prefixes.
 
-### `partial_vector_sums_generator.rs`
+### `generate_partial_vector_sum_triangle.rs`
 
 Parallelized Rust implementation of the partial-vector-sum computation. This contains the raw Rust code, without the surrounding Rust project tooling. Dependencies are Rayon and sysinfo
 

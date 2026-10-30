@@ -48,7 +48,7 @@ Contains the saved results of the exhaustive game analysis.
 
 ### `analysis_by_history.pkl`
 
-Stores the results for individual histories, including their consistent states, probabilities, uncertainty measures, next-roll distributions, and expected-value metrics. This is the main dataset for analyzing individual histories and is also used by the small experiment in `vector_analysis/quick_script.py`.
+Stores the results for individual histories, including their consistent states, probabilities, uncertainty measures, next-roll distributions, and expected-value metrics. This is the main dataset for analyzing individual histories and is also used by the small experiment in `vector_analysis/code/quick_script.py`.
 
 ### `analysis_by_dice_config.pkl`
 
