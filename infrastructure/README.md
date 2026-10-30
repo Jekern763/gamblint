@@ -13,7 +13,7 @@ The `cdk.json` file tells the CDK Toolkit how to execute your app.
 
 ## Infrastructure Graph
 
-``` mermaid
+```mermaid
 graph TB
 
 subgraph Internet
