@@ -2,7 +2,7 @@ from random import choice
 
 
 class DepletingDice:
-    def __init__(self, num_sides: int = 6, current_sides: list = None):
+    def __init__(self, num_sides: int = 6, current_sides: list | None = None):
         self.num_sides = num_sides
         if not current_sides:
             self.current_sides = list(range(1, num_sides + 1))

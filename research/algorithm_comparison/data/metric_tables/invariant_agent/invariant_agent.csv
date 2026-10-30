@@ -1,0 +1,2 @@
+exact_hit_rate,mean_absolute_error,mean_squared_error,guess_frequency,average_deviation_guess,average_operations,maximum_operations,average_payout,median_payout,standard_deviation_payout,minimum_payout,maximum_payout
+0.215,1.4998,3.5884,"{'2': 0.0, '3': 0.0046, '4': 0.0656, '5': 0.0633, '6': 0.3018, '7': 0.1326, '8': 0.2968, '9': 0.0603, '10': 0.0697, '11': 0.0053, '12': 0.0}",1.2913,129.5329,150,0.7769,0.0,1.7682304866462943,-3.0,8.0

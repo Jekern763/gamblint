@@ -277,48 +277,37 @@ if (localStorage.getItem("net_score")) {
 gameLoop();
 
 function handleKeyboardShortcut(event) {
-  const actionKeys = [" ", "Spacebar", "Enter"];
-
-  if (!actionKeys.includes(event.key)) return;
-
   const target = event.target;
 
-  // Let Enter submit a guess when the guess input is focused.
-  if (
-    event.key === "Enter" &&
-    target instanceof HTMLInputElement &&
-    target.id === "guess-input"
-  ) {
-    const guessBtn = ui.el("guess-btn");
-
-    if (!event.repeat && !guessBtn.disabled) {
+  // Enter in the guess input should submit the guess.
+  if (event.key === "Enter" && target.id === "guess-input") {
+    if (!ui.el("guess-btn").disabled) {
       event.preventDefault();
-      guessBtn.click();
+      ui.el("guess-btn").click();
     }
-
     return;
   }
 
-  // Preserve normal behavior for inputs and interactive elements.
+  // Space or Enter can roll when focused on the page itself.
+  const rollKeys = [" ", "Spacebar", "Enter"];
+
+  if (!rollKeys.includes(event.key)) return;
+
+  // Don't interfere with typing or interacting with other controls.
   if (
     target instanceof Element &&
     target.closest(
-      "button, a, input, textarea, select, [contenteditable='true']",
+      'input, textarea, select, button, a, [role="button"], [role="link"], [contenteditable]:not([contenteditable="false"])',
     )
   ) {
     return;
   }
 
-  // Prevent page scrolling when using Space as a game control.
-  event.preventDefault();
-
+  // Prevent repeated rolling when holding down a key.
   if (event.repeat) return;
 
-  const rollBtn = ui.el("roll-btn");
-
-  if (!rollBtn.disabled) {
-    rollBtn.click();
-  }
+  event.preventDefault();
+  ui.el("roll-btn").click();
 }
 
 window.addEventListener("keydown", handleKeyboardShortcut);

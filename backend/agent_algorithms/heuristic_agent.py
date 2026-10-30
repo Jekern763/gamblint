@@ -13,10 +13,8 @@ Both agents will then make a guess based on their expected guess, weighted close
 
 
 class ReflectionAgent(Agent):
-    """takes the average of the peeks and reflects them across the mean roll of 7. Default is to slightly randomize around the perfect reflected mean"""
-
-    def __init__(self, weights=(0.25, 0.5, 0.25)):
-        super().__init__()
+    def __init__(self, weights=(0.25, 0.5, 0.25), riskiness=8, jackpot=10):
+        super().__init__(riskiness=riskiness, jackpot=jackpot)
         self.weights = weights
 
     def get_action(self, peeks):
@@ -29,11 +27,8 @@ class ReflectionAgent(Agent):
 
 
 class InvariantAgent(Agent):
-    """takes the equation sum(remaining_peeks) = 42 - sum(previous_peeks).
-    It then divides the sum(remaining_peeks) by number of remaining peeks."""
-
-    def __init__(self, weights=(0.25, 0.5, 0.25)):
-        super().__init__()
+    def __init__(self, weights=(0.25, 0.5, 0.25), riskiness=8, jackpot=10):
+        super().__init__(riskiness=riskiness, jackpot=jackpot)
         self.weights = weights
 
     def get_action(self, peeks):

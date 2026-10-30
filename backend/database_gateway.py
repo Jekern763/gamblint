@@ -1,10 +1,11 @@
 from decimal import Decimal
 from time import time
-from typing import Any, Dict, Optional
+from typing import Any
 
 import boto3
 from aws_lambda_powertools import Logger
 from boto3.dynamodb.types import TypeSerializer
+
 from models import GamePermanentDataRow, GameTemporaryRow, RecordType
 
 logger = Logger(child=True)  # Inherits configuration from your main logger
@@ -51,7 +52,7 @@ class DatabaseGateway:
             ConditionExpression="attribute_not_exists(session_id)",
         )
 
-    def get_active_session(self, session_id: str) -> Optional[Dict[str, Any]]:
+    def get_active_session(self, session_id: str) -> dict[str, Any] | None:
         # Fetches an active game state, returning None if it doesn't exist
         response = self.table.get_item(
             Key={"session_id": session_id, "record_type": RecordType.MID_SESSION}

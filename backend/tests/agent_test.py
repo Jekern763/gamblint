@@ -1,4 +1,5 @@
 import pytest
+
 from agent_algorithms.agent import Agent
 from game_engine.game import Game
 

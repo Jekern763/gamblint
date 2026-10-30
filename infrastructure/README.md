@@ -6,9 +6,68 @@ The `cdk.json` file tells the CDK Toolkit how to execute your app.
 
 ## Useful commands
 
-- `npm run build` compile typescript to js
-- `npm run watch` watch for changes and compile
-- `npm run test` perform the jest unit tests
-- `npx cdk deploy` deploy this stack to your default AWS account/region
-- `npx cdk diff` compare deployed stack with current state
-- `npx cdk synth` emits the synthesized CloudFormation template
+(Make sure Docker Desktop is running)
+
+- `pnpm test` perform the jest unit tests
+- `pnpm synth` deploy this stack to your default AWS account/region
+
+## Infrastructure Graph
+
+```mermaid
+graph TB
+
+subgraph Internet
+    User([User])
+    DNS["Route 53<br/>gamblint.jamesekern.com"]
+end
+
+subgraph AWS["AWS Infrastructure"]
+
+    CF["CloudFront Distribution"]
+
+    S3[(S3 Frontend File Storage)]
+
+    API["API Gateway"]
+
+    Lambda["Backend Lambda Function"]
+
+    DB[(DynamoDB)]
+
+    Logs[(CloudWatch Logs)]
+
+    DNS --> CF
+
+    CF -->|Frontend Files| S3
+    CF -->|/api/*| API
+    API --> Lambda
+    Lambda <--> DB
+    Lambda --> Logs
+
+end
+
+subgraph CICD["CI / CD"]
+
+    GitHub["GitHub Actions"]
+
+    CDK["AWS CDK"]
+
+    Infra["Infrastructure Stack"]
+
+    Frontend["Frontend Build"]
+
+    GitHub --> CDK
+    CDK --> Infra
+
+    Infra --> CF
+    Infra --> API
+    Infra --> Lambda
+    Infra --> DB
+    Infra --> S3
+
+    CDK --> Frontend
+    Frontend --> S3
+
+end
+
+User --> DNS
+```

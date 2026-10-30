@@ -2,7 +2,7 @@
   "name": "frontend",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/index.js",
+  "main": "src/script.js",
   "scripts": {
     "test": "jest --passWithNoTests",
     "synth": "cdk synth",
@@ -15,15 +15,15 @@
   "devEngines": {
     "packageManager": {
       "name": "pnpm",
-      "version": "^11.9.0",
+      "version": "^12.15.0",
       "onFail": "download"
     }
   },
-  "type": "module",
   "devDependencies": {
-    "jest": "^30.4.2",
-    "jest-environment-jsdom": "^30.4.1",
-    "prettier": "^3.8.4"
+    "eslint": "^10.13.0",
+    "jest": "^30.5.2",
+    "jest-environment-jsdom": "^30.5.2",
+    "prettier": "^3.9.10"
   },
   "jest": {
     "testEnvironment": "jsdom",
