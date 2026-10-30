@@ -1,4 +1,5 @@
 import pytest
+
 from agent_algorithms.heuristic_agent import (
     GamblersFallacyAgent,
     InvariantAgent,

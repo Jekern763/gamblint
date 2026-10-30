@@ -1,4 +1,5 @@
 import pytest
+
 from agent_algorithms.single_path_agent import SinglePathAgent
 
 

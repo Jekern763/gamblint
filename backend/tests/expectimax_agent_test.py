@@ -1,4 +1,5 @@
 import pytest
+
 from agent_algorithms.expectimax_agent import ExpectimaxAgent
 
 

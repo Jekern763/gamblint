@@ -27,7 +27,7 @@ def reset_table():
         if e.response["Error"]["Code"] == "ResourceNotFoundException":
             print("Table didn't exist yet. Skipping deletion.")
         else:
-            raise e
+            raise
 
     # 2. Re-create the table using your exact schema configuration
     print(f"Re-creating table '{table_name}'...")

@@ -31,38 +31,34 @@ def setup_fresh_table():
         if e.response["Error"]["Code"] == "ResourceNotFoundException":
             print("No existing table found. Proceeding straight to creation.")
         else:
-            raise e
+            raise
 
     # --- STEP 2: CREATE FRESH TABLE WITH COMPOSITE KEY SCHEMA ---
-    try:
-        print(f"Carving out fresh layout for '{TABLE_NAME}'...")
-        dynamodb.create_table(
-            TableName=TABLE_NAME,
-            KeySchema=[
-                {"AttributeName": "session_id", "KeyType": "HASH"},  # Partition Key
-                {"AttributeName": "record_type", "KeyType": "RANGE"},  # Sort Key
-            ],
-            AttributeDefinitions=[
-                {"AttributeName": "session_id", "AttributeType": "S"},
-                {"AttributeName": "record_type", "AttributeType": "S"},
-            ],
-            ProvisionedThroughput={"ReadCapacityUnits": 5, "WriteCapacityUnits": 5},
-        )
+    print(f"Carving out fresh layout for '{TABLE_NAME}'...")
+    dynamodb.create_table(
+        TableName=TABLE_NAME,
+        KeySchema=[
+            {"AttributeName": "session_id", "KeyType": "HASH"},  # Partition Key
+            {"AttributeName": "record_type", "KeyType": "RANGE"},  # Sort Key
+        ],
+        AttributeDefinitions=[
+            {"AttributeName": "session_id", "AttributeType": "S"},
+            {"AttributeName": "record_type", "AttributeType": "S"},
+        ],
+        ProvisionedThroughput={"ReadCapacityUnits": 5, "WriteCapacityUnits": 5},
+    )
 
-        # Wait until the new structure is physically active
-        client.get_waiter("table_exists").wait(TableName=TABLE_NAME)
-        print("Successfully created fresh local table structure.")
+    # Wait until the new structure is physically active
+    client.get_waiter("table_exists").wait(TableName=TABLE_NAME)
+    print("Successfully created fresh local table structure.")
 
-        # --- STEP 3: ENABLE THE TTL SPECIFICATION ---
-        print("Activating Time to Live (TTL) engine targeting the 'ttl' attribute...")
-        client.update_time_to_live(
-            TableName=TABLE_NAME,
-            TimeToLiveSpecification={"Enabled": True, "AttributeName": "ttl"},
-        )
-        print("--- Database Initialization Complete! Fresh Slate Active. ---")
-
-    except Exception as e:
-        print(f"Table creation sequence failed: {e}")
+    # --- STEP 3: ENABLE THE TTL SPECIFICATION ---
+    print("Activating Time to Live (TTL) engine targeting the 'ttl' attribute...")
+    client.update_time_to_live(
+        TableName=TABLE_NAME,
+        TimeToLiveSpecification={"Enabled": True, "AttributeName": "ttl"},
+    )
+    print("--- Database Initialization Complete! Fresh Slate Active. ---")
 
 
 if __name__ == "__main__":
