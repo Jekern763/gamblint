@@ -2,7 +2,10 @@ from agent_algorithms.agent import Agent
 
 
 class ExpectimaxAgent(Agent):
+    """Finds the mathematically best guess, by searching the entire proability tree and getting weighted probabilities for every next roll"""
+
     def get_face_combos(self, sum: int, die1: list, die2: list) -> list:
+        """Internal Helper Method: returns all possible ways to get to a target sum by adding together the rolls of two incomplete dice"""
         all_pairs = [(x, sum - x) for x in range(max(1, sum - 6), min(6, sum - 1) + 1)]
 
         valid_pairs = [p for p in all_pairs if p[0] in die1 and p[1] in die2]
@@ -11,6 +14,7 @@ class ExpectimaxAgent(Agent):
     # Pass the list of all possible sums at the end of the search tree. Include duplicates to weight the probability
     # Time complexity is O(n) where n is the number of possible_sums given
     def get_best_value(self, possible_sums: list) -> float:
+        """Internal Helper Method: given a list of all possible sums that could be rolled, keeping duplicated items so it is weighted, finds which guess 2-12 gets the best average payout"""
         max_win = float("-inf")
         best_guess = 0
         for i in range(2, 13):
@@ -32,6 +36,7 @@ class ExpectimaxAgent(Agent):
         current_depth: int = 0,
         max_depth: int = 10,
     ) -> list:
+        """Internal Method: returns a list of all possible sums after the given history, weighted by retaining duplicates"""
         if current_depth > max_depth:
             raise RuntimeError(f"Recursive search passed max depth of {max_depth}")
         # if we have reached the bottom of the tree

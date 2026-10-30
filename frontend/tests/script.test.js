@@ -156,4 +156,67 @@ describe("Gamblint Game Script Tests", () => {
       );
     });
   });
+  describe("keyboard shortcuts", () => {
+    function makeKeyEvent(key, target = document.body, repeat = false) {
+      return {
+        key,
+        target,
+        repeat,
+        preventDefault: jest.fn(),
+      };
+    }
+
+    it("ignores unrelated keys", () => {
+      const rollBtn = document.getElementById("roll-btn");
+      const click = jest.spyOn(rollBtn, "click");
+
+      game.handleKeyboardShortcut(makeKeyEvent("a"));
+
+      expect(click).not.toHaveBeenCalled();
+    });
+
+    it("clicks Roll when Space is pressed on the page", () => {
+      const rollBtn = document.getElementById("roll-btn");
+      const click = jest.spyOn(rollBtn, "click");
+      const event = makeKeyEvent(" ");
+
+      game.handleKeyboardShortcut(event);
+
+      expect(event.preventDefault).toHaveBeenCalled();
+      expect(click).toHaveBeenCalledTimes(1);
+    });
+
+    it("does not roll when a shortcut is repeated", () => {
+      const rollBtn = document.getElementById("roll-btn");
+      const click = jest.spyOn(rollBtn, "click");
+
+      game.handleKeyboardShortcut(makeKeyEvent(" ", document.body, true));
+
+      expect(click).not.toHaveBeenCalled();
+    });
+
+    it("uses Enter in the guess input to activate Guess", () => {
+      const guessBtn = document.getElementById("guess-btn");
+      const guessInput = document.getElementById("guess-input");
+
+      guessBtn.disabled = false;
+      const click = jest.spyOn(guessBtn, "click");
+
+      game.handleKeyboardShortcut(makeKeyEvent("Enter", guessInput));
+
+      expect(click).toHaveBeenCalledTimes(1);
+    });
+
+    it("does not hijack Space while typing in an input", () => {
+      const rollBtn = document.getElementById("roll-btn");
+      const guessInput = document.getElementById("guess-input");
+      const click = jest.spyOn(rollBtn, "click");
+      const event = makeKeyEvent(" ", guessInput);
+
+      game.handleKeyboardShortcut(event);
+
+      expect(click).not.toHaveBeenCalled();
+      expect(event.preventDefault).not.toHaveBeenCalled();
+    });
+  });
 });

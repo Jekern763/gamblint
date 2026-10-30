@@ -1,4 +1,3 @@
-# backend/peek_db.py
 import boto3
 
 dynamodb = boto3.resource(

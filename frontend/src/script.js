@@ -17,7 +17,7 @@ const STORAGE_VERSION = "1.3";
 const currentVersion = localStorage.getItem("storage_version");
 
 if (currentVersion !== STORAGE_VERSION) {
-  localStorage.clear(); // or remove only the keys you own
+  localStorage.clear();
   localStorage.setItem("storage_version", STORAGE_VERSION);
 }
 
@@ -308,5 +308,6 @@ if (typeof module !== "undefined" && module.exports) {
     apiStartGame,
     apiGuess,
     handleGuess,
+    handleKeyboardShortcut,
   };
 }

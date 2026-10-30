@@ -6,8 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "bayesian-dice-engine"
 version = "0.1.0"
 description = "A Bayesian dice rolling and simulation engine"
-readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 license = "MIT"
 
 classifiers = [

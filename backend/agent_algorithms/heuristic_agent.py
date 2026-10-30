@@ -41,6 +41,8 @@ class InvariantAgent(Agent):
 
 
 class GamblersFallacyAgent(Agent):
+    """based on the reflection agent, but will not guess a number it saw in the peeks"""
+
     def get_action(self, peeks):
         heuristic_agent = ReflectionAgent()
         best_guess = heuristic_agent.get_action(peeks)
