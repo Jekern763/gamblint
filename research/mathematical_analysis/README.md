@@ -26,10 +26,6 @@ The proofs are numbered in their original order. They are preserved as close to 
 
 The original conjecture document is preserved in [`archive/old_conjectures.md`](archive/old_conjectures.md). It is intentionally marked as historical and has not been rewritten, including conjectures that may have been incorrect or superseded. [`archive/early_research_index.md`](archive/early_research_index.md) preserves the earlier research index.
 
-## Figures and code
-
-The existing figures are kept in `figures/`. The figure-generation source code was not searched for or reconstructed during this migration; `code/README.md` records that limitation.
-
 ## Important state-model distinction
 
 The proofs below use **ordered states**, in which the first and second dice are distinguished. The game-analysis implementation can canonicalize states by sorting the two remaining-face sets. When comparing proof formulas with that implementation, account for the multiplicity of ordered states and transitions that are merged into a canonical state.

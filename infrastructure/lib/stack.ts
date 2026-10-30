@@ -41,9 +41,14 @@ export class GamblintStack extends cdk.Stack {
 
       removalPolicy: cdk.RemovalPolicy.RETAIN, // Change to RETAIN to keep data intact
 
-      pointInTimeRecovery: true,
+      pointInTimeRecoverySpecification: {
+        pointInTimeRecoveryEnabled: true,
+      },
     });
-
+    const backendLogGroup = new logs.LogGroup(this, "BackendLogGroup", {
+      retention: logs.RetentionDays.ONE_MONTH,
+      removalPolicy: cdk.RemovalPolicy.RETAIN,
+    });
     const backendLambda = new PythonFunction(this, "DiceEngineBackendLambda", {
       runtime: lambda.Runtime.PYTHON_3_13,
 
@@ -51,7 +56,7 @@ export class GamblintStack extends cdk.Stack {
 
       index: "app.py",
 
-      logRetention: logs.RetentionDays.ONE_MONTH,
+      logGroup: backendLogGroup,
 
       handler: "lambda_handler",
 

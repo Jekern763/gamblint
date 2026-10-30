@@ -25,12 +25,10 @@ This project is meant to be reproducable in most aspects. To get started, first 
 then, from the project root
 
 ``` bash
-cd backend
-uv sync
-cd ../research
-uv sync
-cd frontend
-pnpm install --frozen-lockfile
+cd backend && uv sync --locked
+cd research && uv sync --locked
+cd frontend && pnpm install --frozen-lockfile
+cd infrastructure && pnpm install --frozen-lockfile
 ```
 
 Other external dependencies are
@@ -95,7 +93,7 @@ The game engine strictly adheres to Object Oriented Programing principles, along
 
 ### `backend/agent_algorithms`
 
-In total there are 8 algorithms (not including the constant baseline algorithm). Each one represents a different human play style, or the absolute baseline/ceiling of possible play. It is important to note that these agents are **not** artificial intelligence, but just hand coded algorithms that play the game in different ways. The algorithms use a game object, but cannot peek inside it to get the internal state, and therefore cannot "cheat". For a full analysis and comparison of these different algorithms, look at `research/algorithm_comparison`
+In total there are 8 algorithms. Each one represents a different human play style, or the absolute baseline/ceiling of possible play. It is important to note that these agents are **not** artificial intelligence, but just hand coded algorithms that play the game in different ways. The algorithms use a game object, but cannot peek inside it to get the internal state, and therefore cannot "cheat". For a full analysis and comparison of these different algorithms, look at `research/algorithm_comparison`
 
 ### `backend/app.py`
 
@@ -114,64 +112,7 @@ The frontend files are stored in an AWS S3 bucket, and served to the user via a 
 
 ### Infrastructure
 
-``` mermaid
-graph TB
-
-subgraph Internet
-    User([User])
-    DNS["Route 53<br/>gamblint.jamesekern.com"]
-end
-
-subgraph AWS["AWS Infrastructure"]
-
-    CF["CloudFront Distribution"]
-
-    S3[(S3 Frontend File Storage)]
-
-    API["API Gateway"]
-
-    Lambda["Backend Lambda Function"]
-
-    DB[(DynamoDB)]
-
-    Logs[(CloudWatch Logs)]
-
-    DNS --> CF
-
-    CF -->|Frontend Files| S3
-    CF -->|/api/*| API
-    API --> Lambda
-    Lambda <--> DB
-    Lambda --> Logs
-
-end
-
-subgraph CICD["CI / CD"]
-
-    GitHub["GitHub Actions"]
-
-    CDK["AWS CDK"]
-
-    Infra["Infrastructure Stack"]
-
-    Frontend["Frontend Build"]
-
-    GitHub --> CDK
-    CDK --> Infra
-
-    Infra --> CF
-    Infra --> API
-    Infra --> Lambda
-    Infra --> DB
-    Infra --> S3
-
-    CDK --> Frontend
-    Frontend --> S3
-
-end
-
-User --> DNS
-```
+This IAC is written using AWS CDK. It is meant primarily as an artifact, not to be used for a new deployment.
 
 ### `research/*`
 

@@ -19,7 +19,6 @@
       "onFail": "download"
     }
   },
-  "type": "module",
   "devDependencies": {
     "eslint": "^10.13.0",
     "jest": "^30.5.2",
