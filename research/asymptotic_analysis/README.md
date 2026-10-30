@@ -6,7 +6,7 @@ There are artifacts from the original research, and I've done my best to disting
 
 ## OEIS Submission
 
-Some of these files serve as supporting materials for an [Online Encyclopedia of Integer Sequences (OEIS) submission](https://oeis.org/draft/A399323). As of the time of writing, the polynomial-family entry is still in the draft process. The draft page contains the current submission and its revision history.
+Some of these files serve as supporting materials for an [Online Encyclopedia of Integer Sequences (OEIS) submission](https://oeis.org/draft/A399323).
 
 ## The Open Question
 
