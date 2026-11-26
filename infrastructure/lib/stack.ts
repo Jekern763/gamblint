@@ -21,7 +21,7 @@ export class GamblintStack extends cdk.Stack {
       this,
       "GamblintCert",
       "arn:aws:acm:us-east-1:407497072954:certificate/96d06c86-3ae0-4e4a-9dc8-a085f30f525c",
-    );
+    ); // Hardcoded certificate ARN
 
     const sessionTable = new dynamodb.Table(this, "DiceSessionsTable", {
       // Primary Key Configuration
@@ -39,7 +39,7 @@ export class GamblintStack extends cdk.Stack {
 
       timeToLiveAttribute: "ttl",
 
-      removalPolicy: cdk.RemovalPolicy.RETAIN, // Change to RETAIN to keep data intact
+      removalPolicy: cdk.RemovalPolicy.RETAIN,
 
       pointInTimeRecoverySpecification: {
         pointInTimeRecoveryEnabled: true,
@@ -161,12 +161,7 @@ export class GamblintStack extends cdk.Stack {
       distributionPaths: ["/*"], // Wipes the CDN edge cache on fresh deployments
     });
 
-    // setting permissions
+    // permissions
     sessionTable.grantReadWriteData(backendLambda);
-
-    // Outputs
-    new cdk.CfnOutput(this, "FrontendUrl", {
-      value: `https://${distribution.distributionDomainName}`,
-    });
   }
 }
