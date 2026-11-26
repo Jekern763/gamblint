@@ -1,1 +1,5 @@
-research/uv.lock linguist-generated=true
+# Generated research visualizations
+research/mathematical_analysis/figures/payout.html linguist-generated=true
+
+# Dependency lockfiles
+**/*.lock linguist-generated=true
